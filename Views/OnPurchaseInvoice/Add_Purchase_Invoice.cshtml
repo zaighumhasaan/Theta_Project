@@ -1,0 +1,68 @@
+﻿@model Pharmacy_POS.Models.OnPurchaseInvoice
+
+@{
+    ViewData["Title"] = "Add_Purchase_Invoice";
+}
+
+<h1>Add_Purchase_Invoice</h1>
+
+<h4>OnPurchaseInvoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add_Purchase_Invoice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DrugId" class="control-label"></label>
+                <input asp-for="DrugId" class="form-control" />
+                <span asp-validation-for="DrugId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseInvoiceId" class="control-label"></label>
+                <input asp-for="PurchaseInvoiceId" class="form-control" />
+                <span asp-validation-for="PurchaseInvoiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrugQuantity" class="control-label"></label>
+                <input asp-for="DrugQuantity" class="form-control" />
+                <span asp-validation-for="DrugQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrugPriceTotal" class="control-label"></label>
+                <input asp-for="DrugPriceTotal" class="form-control" />
+                <span asp-validation-for="DrugPriceTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchNo" class="control-label"></label>
+                <input asp-for="BatchNo" class="form-control" />
+                <span asp-validation-for="BatchNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManufactureDate" class="control-label"></label>
+                <input asp-for="ManufactureDate" class="form-control" />
+                <span asp-validation-for="ManufactureDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input asp-for="ExpiryDate" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfEntry" class="control-label"></label>
+                <input asp-for="DateOfEntry" class="form-control" />
+                <span asp-validation-for="DateOfEntry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

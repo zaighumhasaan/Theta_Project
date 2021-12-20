@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Pharmacy_POS.Models.StoredDrug>
+
+@{
+    ViewData["Title"] = "All_Stored_Drug";
+}
+
+<h1>All_Stored_Drug</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufactureDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufactureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                <a asp-action="Update_Stored_Drugs" asp-route-id="@item.DrugId">Edit</a> |
+                <a asp-action="Stored_Drug_Detail" asp-route-id="@item.DrugId">Details</a> |
+                <a asp-action="Delete_Stored_Drug" asp-route-id="@item.DrugId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

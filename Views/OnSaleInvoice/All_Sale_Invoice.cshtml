@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Pharmacy_POS.Models.OnSaleInvoice>
+
+@{
+    ViewData["Title"] = "All_Sale_Invoice";
+}
+
+<h1>All_Sale_Invoice</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DrugQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DrugPriceTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrugQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrugPriceTotal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
