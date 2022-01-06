@@ -8,10 +8,95 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Customer\**" />
     <Compile Remove="Views\Drugs\**" />
+    <Compile Remove="Views\Employee\**" />
+    <Compile Remove="Views\OnPurchaseInvoice\**" />
+    <Compile Remove="Views\OnSaleInvoice\**" />
+    <Compile Remove="Views\Sale_Invoice_\**" />
+    <Compile Remove="Views\StoredDrug\**" />
+    <Compile Remove="Views\Supplier\**" />
+    <Content Remove="Views\Customer\**" />
     <Content Remove="Views\Drugs\**" />
+    <Content Remove="Views\Employee\**" />
+    <Content Remove="Views\OnPurchaseInvoice\**" />
+    <Content Remove="Views\OnSaleInvoice\**" />
+    <Content Remove="Views\Sale_Invoice_\**" />
+    <Content Remove="Views\StoredDrug\**" />
+    <Content Remove="Views\Supplier\**" />
+    <EmbeddedResource Remove="Views\Customer\**" />
     <EmbeddedResource Remove="Views\Drugs\**" />
+    <EmbeddedResource Remove="Views\Employee\**" />
+    <EmbeddedResource Remove="Views\OnPurchaseInvoice\**" />
+    <EmbeddedResource Remove="Views\OnSaleInvoice\**" />
+    <EmbeddedResource Remove="Views\Sale_Invoice_\**" />
+    <EmbeddedResource Remove="Views\StoredDrug\**" />
+    <EmbeddedResource Remove="Views\Supplier\**" />
+    <None Remove="Views\Customer\**" />
     <None Remove="Views\Drugs\**" />
+    <None Remove="Views\Employee\**" />
+    <None Remove="Views\OnPurchaseInvoice\**" />
+    <None Remove="Views\OnSaleInvoice\**" />
+    <None Remove="Views\Sale_Invoice_\**" />
+    <None Remove="Views\StoredDrug\**" />
+    <None Remove="Views\Supplier\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_accent.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_animations.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_backgrounds.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_cards.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_custom-forms.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_dark-mode.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_direct-chat.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_miscellaneous.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_navbar.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_scrollbar.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_sidebar.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_toasts.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\mixins - Copy\_touch-support.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_accent.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_animations.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_backgrounds.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_cards.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_custom-forms.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_dark-mode.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_direct-chat.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_miscellaneous.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_navbar.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_scrollbar.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_sidebar.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_toasts.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\mixins\_touch-support.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\npm\DocsPlugins.js" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\npm\DocsPublish.js" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\npm\Plugins.js" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\npm\Publish.js" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\npm\vnu-jar.js" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_404_500_errors.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_e-commerce.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_iframe.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_invoice.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_kanban.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_lockscreen.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_login_and_register.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_mailbox.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_profile.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\pages\_projects.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.components.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.core.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.extra-components.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.light.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.pages.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.plugins.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\_components.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\_core.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\_extra-components.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\_miscellaneous.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\_pages.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\plugins\parts\_plugins.scss" />
+    <Content Remove="wwwroot\FrontEnd\build\scss\_adminlte - Copy.raw.scss" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,12 +118,35 @@
     <None Include="wwwroot\FrontEnd\build\js\Toasts.js" />
     <None Include="wwwroot\FrontEnd\build\js\TodoList.js" />
     <None Include="wwwroot\FrontEnd\build\js\Treeview.js" />
-    <None Include="wwwroot\FrontEnd\build\npm\DocsPlugins.js" />
-    <None Include="wwwroot\FrontEnd\build\npm\DocsPublish.js" />
-    <None Include="wwwroot\FrontEnd\build\npm\Plugins.js" />
-    <None Include="wwwroot\FrontEnd\build\npm\Publish.js" />
-    <None Include="wwwroot\FrontEnd\build\npm\vnu-jar.js" />
+    <None Include="wwwroot\FrontEnd\build\npm\DocsPlugins.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\npm\DocsPublish.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\npm\Plugins.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\npm\Publish.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\npm\vnu-jar.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="wwwroot\FrontEnd\build\scss\adminlte.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_accent.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_animations.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_backgrounds.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_cards.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_custom-forms.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_dark-mode.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_direct-chat.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_miscellaneous.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_navbar.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_scrollbar.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_sidebar.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_toasts.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\mixins - Copy\_touch-support.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\mixins\_accent.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\mixins\_animations.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\mixins\_backgrounds.scss" />
@@ -74,6 +182,56 @@
     <None Include="wwwroot\FrontEnd\build\scss\parts\_miscellaneous.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\parts\_pages.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\parts\_plugins.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_accent.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_animations.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_backgrounds.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_cards.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_custom-forms.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_dark-mode.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_direct-chat.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_miscellaneous.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_navbar.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_scrollbar.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_sidebar.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_toasts.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\mixins\_touch-support.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\npm\DocsPlugins.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\npm\DocsPublish.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\npm\Plugins.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\npm\Publish.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\npm\vnu-jar.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_404_500_errors.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_e-commerce.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_iframe.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_invoice.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_kanban.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_lockscreen.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_login_and_register.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_mailbox.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_profile.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\pages\_projects.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.components.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.core.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.extra-components.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.light.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.pages.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\adminlte.plugins.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\_components.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\_core.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\_extra-components.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\_miscellaneous.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\_pages.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\plugins\parts\_plugins.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\plugins\_bootstrap-slider.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\plugins\_bootstrap-switch.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\plugins\_daterangepicker.scss" />
@@ -87,6 +245,7 @@
     <None Include="wwwroot\FrontEnd\build\scss\plugins\_select2.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\plugins\_sweetalert2.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\plugins\_toastr.scss" />
+    <None Include="wwwroot\FrontEnd\build\scss\_adminlte - Copy.raw.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\_adminlte.raw.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\_alerts.scss" />
     <None Include="wwwroot\FrontEnd\build\scss\_animation-effects.scss" />
@@ -2182,12 +2341,79 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
+    <PackageReference Include="bootstrap" Version="5.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\css\dataTables.bootstrap5.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\jquery.dataTables.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\FrontEnd\build\npm\.eslintrc.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\FrontEnd\build\scss\plugins\npm\.eslintrc.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\dataTables.bootstrap5.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\jquery.dataTables.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\js\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\additional-methods.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\jquery.validate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\dist\jquery.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

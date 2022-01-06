@@ -1,0 +1,108 @@
+﻿@model Pharmacy_POS.Models.Drug
+
+@{
+    ViewData["Title"] = "Add_Drug";
+    IList<DrugCategory> Listcategories = ViewBag.ListCategories;
+
+    SelectList AllCategories = new SelectList(Listcategories, "CategoryId", "CategoryName");  
+}
+@if(ViewBag.SMESSAGE!=null)
+{
+<div class="alert alert-success">@ViewBag.SMESSAGE</div>
+}
+else if(ViewBag.EMESSAGE!=null)
+{
+<div class="alert alert-warning">@ViewBag.EMESSAGE</div>
+}
+
+<center><h1>Add Drug</h1></center>
+
+<hr />
+<div class="offset-5 row">
+    
+    <div class=" col-md-4">
+        <form asp-action="Add_Drug">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DrugName" class="control-label"></label>
+                <input asp-for="DrugName" class="form-control" />
+                <span asp-validation-for="DrugName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+               @* 
+               <select class="form-control input-sm" name="DrugCategory" asp-for="DrugCategory">
+                       <option>Choose a category</option>
+                        @foreach (var cat in Listcategories)
+                        {
+                            <option value="@cat.CategoryId">@(cat.CategoryName)</option>
+                        }
+                    </select>
+               *@ <label asp-for="DrugCategory" class="control-label"></label>
+                @*    <input asp-for="ItemCategory" class="form-control" />
+                <span asp-validation-for="DrugCategory" class="text-danger"></span>
+            *@</div>
+
+            @*<div class="form-group">
+                <label asp-for="DrugCategory" class="control-label"></label>
+                <input asp-for="DrugCategory" class="form-control" />
+                <span asp-validation-for="DrugCategory" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ScientificName" class="control-label"></label>
+                <input asp-for="ScientificName" class="form-control" />
+                <span asp-validation-for="ScientificName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Manufacturer" class="control-label"></label>
+                <input asp-for="Manufacturer" class="form-control" />
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitPrice" class="control-label"></label>
+                <input asp-for="UnitPrice" class="form-control" />
+                <span asp-validation-for="UnitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoOfUnitsInPackage" class="control-label"></label>
+                <input asp-for="NoOfUnitsInPackage" class="form-control" />
+                <span asp-validation-for="NoOfUnitsInPackage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoOfPackages" class="control-label"></label>
+                <input asp-for="NoOfPackages" class="form-control" />
+                <span asp-validation-for="NoOfPackages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchNo" class="control-label"></label>
+                <input asp-for="BatchNo" class="form-control" />
+                <span asp-validation-for="BatchNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManufacturedDate" class="control-label"></label>
+                <input asp-for="ManufacturedDate" class="form-control" />
+                <span asp-validation-for="ManufacturedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input asp-for="ExpiryDate" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="All_Drugs" class="btn btn-success btn-sm">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

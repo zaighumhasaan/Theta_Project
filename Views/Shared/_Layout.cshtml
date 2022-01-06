@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +8,9 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/js/dataTables.bootstrap5.min.css">
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="~/FrontEnd/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -132,7 +136,7 @@
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <div class=" dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">15 Notifications</span>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
@@ -197,115 +201,33 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Employee
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Employee" asp-action="Add_Employee">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Add Staff</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Employee" asp-action="Update_Employee">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Update Staff</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Employee" asp-action="Delete_Employee">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Delete Staff</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Employee" asp-action="All_Employee">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>All Staff</p>
-                        </a>
-              </li>
-       
-
-            </ul>
-          </li>
+          
             <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Drugs
+                Manage Drugs
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
 
               <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Drug" asp-action="Add_Drugs">
+                        <a class="nav-link" asp-controller="Drug_" asp-action="Add_Drug">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Add Drug</p>
                         </a>
               </li>
+             
+              
               <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Drug" asp-action="Update_Drug">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Update Drug</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-danger">
-                        <a class="nav-link" asp-controller="Drug" asp-action="Delete_Drug">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Delete Drug</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Drug" asp-action="All_Drug">
+                        <a class="nav-link" asp-controller="Drug_" asp-action="All_Drugs">
                           <i class="far fa-circle nav-icon"></i>
                           <p>All Drugs</p>
                         </a>
               </li>
             </ul>
-            <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-               Customer
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Drug" asp-action="Add_Drugs">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Add Customer</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Drug" asp-action="Update_Drug">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Update Customer</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-danger">
-                        <a class="nav-link" asp-controller="Drug" asp-action="Delete_Drug">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Delete Customer</p>
-                        </a>
-              </li>
-              <li class="nav-item bg-light">
-                        <a class="nav-link" asp-controller="Drug" asp-action="All_Drug">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>All Customer</p>
-                        </a>
-              </li>
-            </ul>
-          </li>
+           
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -353,6 +275,8 @@
     </div>
   </footer>
 
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -392,13 +316,19 @@
 <!-- AdminLTE App -->
 <script src="~/FrontEnd/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="~/FrontEnd/dist/js/demo.js"></script>
+@*<script src="~/FrontEnd/dist/js/demo.js"></script>*@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="~/FrontEnd/dist/js/pages/dashboard.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+@*<script src="~/FrontEnd/dist/js/pages/dashboard.js"></script>*@
+<script>$(document).ready(function()
+{
+    $("#MyTable").dataTable();
+})</script>
+
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
 
 
 

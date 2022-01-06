@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Pharmacy_POS.Models.ViewDrugs>
+
+@{
+    ViewData["Title"] = "All_Drugs";
+
+}
+
+<center><h1>All Drugs</h1></center>
+
+<p>
+    <a asp-action="Add_Drug" class="btn btn-info btn-sm">Add New Drug</a>
+</p>
+<table class="table" id="MyTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DrugName)
+            </th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScientificName)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfUnitsInPackage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfPackages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrugName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScientificName)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfUnitsInPackage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfPackages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>*@
+            <td>
+                <a asp-action="Update_Drug" asp-route-id="@item.DrugId" class="btn btn-info btn-sm">Edit</a> |
+                <a asp-action="Drug_Detail" asp-route-id="@item.DrugId" class="btn btn-success btn-sm">Details</a> |
+                <a asp-action="Delete_Drug" asp-route-id="@item.DrugId" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,24 +1,19 @@
 ﻿@model Pharmacy_POS.Models.Drug
 
 @{
-    ViewData["Title"] = "Update_Drugs";
+    ViewData["Title"] = "Update_Drug";
+    IList<DrugCategory> Listcategories = ViewBag.ListCategories;
+
+    SelectList AllCategories = new SelectList(Listcategories, "CategoryId", "CategoryName");  
 }
 
-<h1>Update Drugs</h1>
+<center><h1>Update Drug</h1></center>
 
 
 <hr />
-@if(ViewBag.SMESSAGE!=null)
-{
-    <div class="alert alert-success">@ViewBag.SMESSAGE</div>
-}
-else if(ViewBag.EMESSAGE!=null)
-{
-    <div class="alert alert-success">@ViewBag.EMESSAGE</div>
-}
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Update_Drugs">
+        <form asp-action="Update_Drug">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DrugId" />
             <div class="form-group">
@@ -27,14 +22,15 @@ else if(ViewBag.EMESSAGE!=null)
                 <span asp-validation-for="DrugName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                 @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+                @*<label asp-for="DrugCategory" class="control-label"></label>
+                <input asp-for="DrugCategory" class="form-control" />*@
+                <span asp-validation-for="DrugCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ScientificName" class="control-label"></label>
                 <input asp-for="ScientificName" class="form-control" />
                 <span asp-validation-for="ScientificName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DrugCategory" class="control-label"></label>
-                <input asp-for="DrugCategory" class="form-control" />
-                <span asp-validation-for="DrugCategory" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Manufacturer" class="control-label"></label>
@@ -52,6 +48,27 @@ else if(ViewBag.EMESSAGE!=null)
                 <span asp-validation-for="NoOfUnitsInPackage" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="NoOfPackages" class="control-label"></label>
+                <input asp-for="NoOfPackages" class="form-control" />
+                <span asp-validation-for="NoOfPackages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchNo" class="control-label"></label>
+                <input asp-for="BatchNo" class="form-control" />
+                <span asp-validation-for="BatchNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManufacturedDate" class="control-label"></label>
+                <input asp-for="ManufacturedDate" class="form-control" />
+                <span asp-validation-for="ManufacturedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input asp-for="ExpiryDate" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -59,7 +76,7 @@ else if(ViewBag.EMESSAGE!=null)
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="All_Drugs" class="btn btn-success btn-sm">Back to List</a>
 </div>
 
 @section Scripts {

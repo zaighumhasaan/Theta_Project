@@ -12,6 +12,7 @@ namespace Pharmacy_POS.Controllers
         {
             _dbcontext = context;
         }
+
         [HttpGet]
         public IActionResult Add_Customer()
         {
