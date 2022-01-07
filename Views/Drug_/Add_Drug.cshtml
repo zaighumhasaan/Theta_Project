@@ -18,7 +18,90 @@ else if(ViewBag.EMESSAGE!=null)
 <center><h1>Add Drug</h1></center>
 
 <hr />
-<div class="offset-5 row">
+<div class="col-md-6 col-lg-12 col-sm-3">
+    <form asp-action="Add_Drug">
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-4"><label>Drug Name</label></div>
+            <div class="col-md-4"><label>Drug Category</label></div>
+            <div class="col-md-4"><label>Scientific Name</label></div>
+
+        </div>
+        <div class="row ">
+
+            <div class="col-md-4">
+                <input type="text" asp-for="DrugName" step="any" placeholder="enter drug name" class="form-control input-group-sm " />
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+            </div>
+            <div class="col-md-4">
+                <input type="text" asp-for="ScientificName" step="any" placeholder="enter scientific name" class="form-control input-group-sm " />
+            </div>
+
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4"><label>Manufacturer Name</label></div>
+            <div class="col-md-4"><label>Unit Price</label></div>
+            <div class="col-md-4"><label> No Of Units in Package</label></div>
+
+        </div>
+        <div class="row ">
+
+            <div class="col-md-4">
+                <input type="text" asp-for="Manufacturer" step="any" placeholder="enter manufacturer name" class="form-control input-group-sm " />
+            </div>
+            <div class="col-md-4">
+                <input type="text" asp-for="UnitPrice" step="any" placeholder="enter  unit price" class="form-control input-group-sm " />
+            </div>
+            <div class="col-md-4">
+                <input type="text" asp-for="NoOfUnitsInPackage" step="any" placeholder="no of units in package  " class="form-control input-group-sm " />
+            </div>
+
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4"><label>No Of Packages </label></div>
+            <div class="col-md-4"><label>Batch No</label></div>
+            <div class="col-md-4"><label>Manufactured Date</label></div>
+
+        </div>
+        <div class="row ">
+
+            <div class="col-md-4">
+                <input type="text" asp-for="NoOfPackages" step="any" placeholder="enter no of packages " class="form-control input-group-sm " />
+            </div>
+            <div class="col-md-4">
+                <input type="text"asp-for="BatchNo" step="any" placeholder="enter batch no" class="form-control input-group-sm " />
+            </div>
+            <div class="col-md-4">
+                <input type="datetime" asp-for="ManufacturedDate" step="any" placeholder="manufactured date" class="form-control input-group-sm " />
+            </div>
+
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4"><label>Expiry Date </label></div>
+            <div class="col-md-8"></div>
+            
+
+        </div>
+        <div class="row ">
+
+            <div class="col-md-4">
+                <input type="datetime" asp-for="ExpiryDate" step="any" placeholder="enter expiry date " class="form-control input-group-sm " />
+            </div>
+            <div class="form-group  col-md-8 border-5">
+                <input type="submit" value="Save " class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@*-------------------------------------------------------------------------------------------*@
+<!--<div class="offset-5 row">
     
     <div class=" col-md-4">
         <form asp-action="Add_Drug">
@@ -30,7 +113,7 @@ else if(ViewBag.EMESSAGE!=null)
             </div>
 
             <div class="form-group">
-                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })-->
                @* 
                <select class="form-control input-sm" name="DrugCategory" asp-for="DrugCategory">
                        <option>Choose a category</option>
@@ -39,17 +122,17 @@ else if(ViewBag.EMESSAGE!=null)
                             <option value="@cat.CategoryId">@(cat.CategoryName)</option>
                         }
                     </select>
-               *@ <label asp-for="DrugCategory" class="control-label"></label>
+               *@ <!--<label asp-for="DrugCategory" class="control-label"></label>-->
                 @*    <input asp-for="ItemCategory" class="form-control" />
                 <span asp-validation-for="DrugCategory" class="text-danger"></span>
-            *@</div>
+            *@<!--</div>-->
 
             @*<div class="form-group">
                 <label asp-for="DrugCategory" class="control-label"></label>
                 <input asp-for="DrugCategory" class="form-control" />
                 <span asp-validation-for="DrugCategory" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label asp-for="ScientificName" class="control-label"></label>
                 <input asp-for="ScientificName" class="form-control" />
                 <span asp-validation-for="ScientificName" class="text-danger"></span>
@@ -95,7 +178,7 @@ else if(ViewBag.EMESSAGE!=null)
             </div>
         </form>
     </div>
-</div>
+</div>-->
 
 <div>
     <a asp-action="All_Drugs" class="btn btn-success btn-sm">Back to List</a>

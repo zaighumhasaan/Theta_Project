@@ -14,6 +14,6 @@
         public string CategoryName { get; set; }
         public DateTime ManufacturedDate { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public double Quantity { get; set; }
+        public double? Quantity { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Pharmacy_POS.Models;
 using System.Reflection;
 
@@ -14,27 +16,50 @@ namespace Pharmacy_POS.Controllers
             _dbcontext = context;
         }
         [HttpGet]
-        public IActionResult Add_Sale_Invoice()
+        public ActionResult Add_Sale()
         {
+            ViewBag.SMeesage = TempData["SMessage"];
+            ViewBag.EMessage = TempData["EMessage"];
+            ViewBag.ListItems = _dbcontext.Drugs.ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult Add_Sale_Invoice(SaleInvoice sale)
+        public IActionResult Add_Sale(String objData)
         {
+
             try
             {
+                ViewSales objMain = JsonConvert.DeserializeObject<ViewSales>(objData, new IsoDateTimeConverter());
+                var exSale = _dbcontext.SaleInvoices.OrderByDescending(m => m.SaleInvoiceId).FirstOrDefault();
+                //var serial = 0;
+                //if (exSale != null)
+                //{
+                //    serial = exSale.SaleInvoiceId + 1;
+                //}
+                //objMain.objSale.Serial = serial;
+                //objMain.objSale.Code = "Sale/" + objMain.objSale.SaleDate.Month.ToString() + "/" + objMain.objSale.SaleDate.Year.ToString() + "/" + serial.ToString("000");
 
-                _dbcontext.SaleInvoices.Add(sale);
+                //objMain.objSale.CreatedBy = "System";
+                //objMain.objSale.CreatedDate = DateTime.Now;
+                _dbcontext.SaleInvoices.Add(objMain.objSale);
                 _dbcontext.SaveChanges();
-                ViewBag.SMESSAGE = "Data Saved Successfully";
+                foreach (OnSaleInvoice item in objMain.ListSaleLine)
+                {
+                    var saleid = objMain.objSale.SaleInvoiceId;
+                    item.SaleInvoiceId = saleid;
+                    //item.CreatedBy = "System";
+                    //item.CreatedDate = DateTime.Now;
+                    _dbcontext.OnSaleInvoices.Add(item);
+                    _dbcontext.SaveChanges();
+                }
+                TempData["SMessage"] = "Data Updated Successfully";
             }
-            catch (AmbiguousMatchException)
+            catch (Exception ex)
             {
-                ViewBag.EMESSAGE = "Some Error Occur ! Please Try Again";
-
+                TempData["EMessage"] = "Some error occured. please try again";
             }
 
-            return View(sale);
+            return RedirectToAction(nameof(Sale_Invoice_Controller.Add_Sale));
         }
 
         [HttpGet]

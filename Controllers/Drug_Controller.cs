@@ -43,6 +43,26 @@ namespace Pharmacy_POS.Controllers
             return RedirectToAction(nameof(Drug_Controller.All_Drugs));
         }
 
+        //[HttpGet]
+        //public IActionResult Min_Stock()
+        //{
+
+        //    return View();
+        //    //IList<ViewDrugs> OlistDrugs = (from drug in _dbcontext.Drugs
+        //    //                          from cat in _dbcontext.DrugCategories.Where(m => m.CategoryId == drug.DrugCategory && drug.Quantity>=10)
+        //    //                          select new ViewDrugs
+        //    //                               {
+        //    //                                   Quantity = drug.Quantity,
+        //    //                                   DrugName =drug.DrugName,
+        //    //                                   CategoryName = cat.CategoryName,
+        //    //                                   //DrugName = drug.DrugName,
+        //    //                                   //ScientificName = !string.IsNullOrWhiteSpace(drug.ScientificName) ? drug.ScientificName : "",
+        //    //                                   //CategoryName = cat.CategoryName,
+
+        //    //                               }).ToList();
+        //    //var json = Json.Convert.SerializeObject(OlistDrugs);
+        //    //return Json(json); ;
+        //}
         [HttpGet]
         public IActionResult All_Drugs()
         {
@@ -58,25 +78,7 @@ namespace Pharmacy_POS.Controllers
                                                    CategoryName =cat.CategoryName,
 
                                                }).ToList();
-               // IList<Drug> Drug_List = _dbcontext.Drugs.ToList();
-              //  var count = _dbcontext.Drugs.Count();
-              //  List<string> Category_List = new List<string>(count);
-              //  ArrayList Category_List = new ArrayList();
-
-                //foreach (var name in _dbcontext.DrugCategories)
-                //{
-                //    foreach (var drug in Drug_List)
-                //    {
-                //        if (drug.DrugCategory == name.CategoryId)
-                //        {
-                //            Category_List.Add(name.CategoryName);
-                //        }
-                //    }
-
-
-                //    //}
-                //    //    ViewBag.CategoryList = Category_List;
-
+               
 
                     return View(OlistDrugs);
             }

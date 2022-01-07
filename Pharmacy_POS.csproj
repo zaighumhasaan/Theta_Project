@@ -13,7 +13,6 @@
     <Compile Remove="Views\Employee\**" />
     <Compile Remove="Views\OnPurchaseInvoice\**" />
     <Compile Remove="Views\OnSaleInvoice\**" />
-    <Compile Remove="Views\Sale_Invoice_\**" />
     <Compile Remove="Views\StoredDrug\**" />
     <Compile Remove="Views\Supplier\**" />
     <Content Remove="Views\Customer\**" />
@@ -21,7 +20,6 @@
     <Content Remove="Views\Employee\**" />
     <Content Remove="Views\OnPurchaseInvoice\**" />
     <Content Remove="Views\OnSaleInvoice\**" />
-    <Content Remove="Views\Sale_Invoice_\**" />
     <Content Remove="Views\StoredDrug\**" />
     <Content Remove="Views\Supplier\**" />
     <EmbeddedResource Remove="Views\Customer\**" />
@@ -29,7 +27,6 @@
     <EmbeddedResource Remove="Views\Employee\**" />
     <EmbeddedResource Remove="Views\OnPurchaseInvoice\**" />
     <EmbeddedResource Remove="Views\OnSaleInvoice\**" />
-    <EmbeddedResource Remove="Views\Sale_Invoice_\**" />
     <EmbeddedResource Remove="Views\StoredDrug\**" />
     <EmbeddedResource Remove="Views\Supplier\**" />
     <None Remove="Views\Customer\**" />
@@ -37,7 +34,6 @@
     <None Remove="Views\Employee\**" />
     <None Remove="Views\OnPurchaseInvoice\**" />
     <None Remove="Views\OnSaleInvoice\**" />
-    <None Remove="Views\Sale_Invoice_\**" />
     <None Remove="Views\StoredDrug\**" />
     <None Remove="Views\Supplier\**" />
   </ItemGroup>
@@ -2351,6 +2347,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
