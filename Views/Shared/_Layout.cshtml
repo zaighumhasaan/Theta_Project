@@ -202,7 +202,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
-            <li class="nav-item menu-open">
+            <li class="nav-item menu-is-opening">
             <a href="" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -232,6 +232,12 @@
                         <p>Add Sale</p>
                     </a>
                 </li>
+                <li class="nav-item bg-light">
+                    <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="All_Sale_Invoices">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>All Sales</p>
+                    </a>
+                </li>
             </ul>
            
         </ul>
@@ -244,130 +250,130 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-         
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+          <div class="container-fluid">
+              <div class="row mb-2">
+                  <div class="col-sm-6">
 
-      <div class="container mt-5">
-          <div class="row">
-              <div class="col-md-3">
-                  <div class="card text-center">
-                      <div class="card-header bg-primary text-white">
-                          <div class="row align-items-center">
-                              <div class="col">
-                                  <i class="fa fa-tablets fa-capsules  fa-4x"></i>
-                              </div>
-                              <div class="col">
-                                  <h3 class="display-3">08</h3>
-                                  <h6>Manage Drugs</h6>
-                              </div>
-
-                          </div>
-                      </div>
-                      <div class="card-footer">
-                          <h5>
-                              <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
-                          </h5>
-                      </div>
-                  </div>
-
-              </div>
-              @*Card Ends Here*@
-              <div class="col-md-3">
-                  <div class="card text-center">
-                      <div class="card-header bg-info text-white">
-                          <div class="row align-items-center">
-                              <div class="col">
-                                  <i class="fa fa-boxes fa-4x"></i>
-                              </div>
-                              <div class="col">
-                                  <h3 class="display-3">08</h3>
-                                  <h6>Near To Empty</h6>
-                              </div>
-
-                          </div>
-                      </div>
-                      <div class="card-footer">
-                          <h5>
-                              <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
-                          </h5>
-                      </div>
-                  </div>
-
-              </div>
-               @*Card Ends Here*@
-              <div class="col-md-3">
-                  <div class="card text-center">
-                      <div class="card-header bg-warning text-white">
-                          <div class="row align-items-center">
-                              <div class="col">
-                                  <i class="fa fa-warehouse fa-4x"></i>
-                              </div>
-                              <div class="col">
-                                  <h3 class="display-3">08</h3>
-                                  <h6>About To Expire</h6>
-                              </div>
-
-                          </div>
-                      </div>
-                      <div class="card-footer">
-                          <h5>
-                              <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
-                          </h5>
-                      </div>
-                  </div>
-
-              </div>
-              @*Card Ends Here*@
-              <div class="col-md-3">
-                  <div class="card text-center">
-                      <div class="card-header bg-danger text-white">
-                          <div class="row align-items-center">
-                              <div class="col">
-                                  <i class="fa fa-capsules fa-4x"></i>
-                              </div>
-                              <div class="col">
-                                  <h3 class="display-3">80</h3>
-                                  <h6>Expired Drugs</h6>
-                              </div>
-
-                          </div>
-                      </div>
-                      <div class="card-footer">
-                          <h5>
-                              <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
-                          </h5>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-
+                  </div><!-- /.col -->
+                  <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Home</a></li>
+                          <li class="breadcrumb-item active">Dashboard v1</li>
+                      </ol>
+                  </div><!-- /.col -->
+              </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
       </div>
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+      <!-- /.content-header -->
+      <!--1st Cards Starts Form Here-->
+      @*<div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-header bg-primary text-white">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <i class="fa fa-tablets fa-capsules  fa-4x"></i>
+                            </div>
+                            <div class="col">
+                                <h3 class="display-3">08</h3>
+                                <h6>Manage Drugs</h6>
+                            </div>
 
-            @RenderBody()
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h5>
+                            <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                        </h5>
+                    </div>
+                </div>
 
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+            </div>*@
+      @*Card Ends Here*@
+      <!--<div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-header bg-info text-white">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <i class="fa fa-boxes fa-4x"></i>
+                    </div>
+                    <div class="col">
+                        <h3 class="display-3">08</h3>
+                        <h6>Near To Empty</h6>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <h5>
+                    <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                </h5>
+            </div>
+        </div>
+
+    </div>-->
+      @*Card Ends Here*@
+      <!--<div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-header bg-warning text-white">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <i class="fa fa-warehouse fa-4x"></i>
+                    </div>
+                    <div class="col">
+                        <h3 class="display-3" id="drugstock"></h3>
+                        <h6>About To Expire</h6>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <h5>
+                    <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                </h5>
+            </div>
+        </div>
+
+    </div>-->
+      @*Card Ends Here*@
+      @*<div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-header bg-danger text-white">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <i class="fa fa-capsules fa-4x"></i>
+                            </div>
+                            <div class="col">
+                                <h3 class="display-3">80</h3>
+                                <h6>Expired Drugs</h6>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h5>
+                            <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                        </h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>*@
+      <!-- Main content -->
+      <section class="content">
+          <div class="container-fluid">
+
+              @RenderBody()
+
+              <!-- /.row (main row) -->
+          </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+  </div>
+
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -427,7 +433,24 @@
 <script>$(document).ready(function()
 {
     $("#MyTable").dataTable();
+    
+    //$.ajax({
+    //    url: "/Drug_/Get_Min_Stock",
+    //    method: "GET",
+    //    success: function (response) {
+            
+    //        response = JSON.parse(response);
+    //        $("#drugstock").text(response.DrugId);
+    //    },
+    //    error: function (response) {
+
+    //    }
+    //});
 })</script>
+    <script>
+        
+        
+    </script>
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>

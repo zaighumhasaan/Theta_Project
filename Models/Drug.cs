@@ -22,7 +22,7 @@ namespace Pharmacy_POS.Models
         public string? BatchNo { get; set; }
         public DateTime ManufacturedDate { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public double? Quantity { get; set; }
+        public double Quantity { get; set; }
 
         public virtual ICollection<OnPurchaseInvoice> OnPurchaseInvoices { get; set; }
         public virtual ICollection<OnSaleInvoice> OnSaleInvoices { get; set; }

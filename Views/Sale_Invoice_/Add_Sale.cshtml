@@ -1,16 +1,16 @@
 ﻿@model Pharmacy_POS.Models.SaleInvoice
 
+
 @{
     ViewData["Title"] = "Add_Sale";
+    
 
     IList<Drug> ListItems = ViewBag.ListItems;
     SelectList AllItems = new SelectList(ListItems, "DrugId", "DrugName");
-
 }
 
-
-<div class="alert alert-success text-center">Manage Sales</div>
-@if (ViewBag.SMessage != null)
+@*<div class="alert alert-success text-center">Manage Sales</div>*@
+@if (ViewBag.SMeesage != null)
 {
     <div class="alert alert-success">@ViewBag.SMessage</div>
 }
@@ -20,23 +20,27 @@ else if (ViewBag.EMessage != null)
 }
 <h2>Sale Date</h2>
 <div class="col-md-6 col-lg-12 col-sm-3">
-    <form asp-action="AddSale" id="saleform">
+    <form asp-action="Add_Sale" id="saleform">
         <input type="hidden" id="objData" name="objData" value="" />
 
         <label>Sale Date</label>
         <input type="datetime" value="@DateTime.Now.ToShortDateString()" id="saledate" />
 
-        <h2>Drug Detail</h2>
+        <h2>Items Detail</h2>
 
         <div class="row">
-            <div class="col-md-6"><label>Drug Detail</label></div>
-            <div class="col-md-2"><label>Drug Qty</label></div>
-            <div class="col-md-2"><label>Drug Price</label></div>
-            <div class="col-md-2"><label>Total Price</label></div>
+            <div class="col-md-3"><label>Item Detail</label></div>
+            <div class="col-md-2"><label>Item Qty</label></div>
+            <div class="col-md-2"><label>Item Price</label></div>
+            <div class="col-md-1"><label>Discount</label></div>
+            <div class="col-md-2" style="display:none"><label>Total Price</label></div>
+            
+            <div class="offset-2 col-md-2"><label>Grand Total</label></div>
+
         </div>
         <div class="row parentdiv">
-            <div class="col-md-6">
-                @Html.DropDownList("DrugId", AllItems, "Choose an Item", new { @class = "form-control input-sm" })
+            <div class="col-md-3">
+                @Html.DropDownList("DrugId", AllItems, "Choose a Drug", new { @class = "form-control input-sm" })
             </div>
             <div class="col-md-2">
                 <input type="number" step="any" id="Qty" value="1" class="form-control input-group-sm qty" />
@@ -44,12 +48,22 @@ else if (ViewBag.EMessage != null)
             <div class="col-md-2">
                 <input type="number" step="any" id="Price" value="1" class="form-control input-group-sm price" />
             </div>
+            <div class="col-md-1">
+                <input type="number" step="any" id="Discount" value="0" class="form-control input-group-sm discount" placeholder="%" />
+            </div>
             <div class="col-md-2">
-                <input type="number" readonly step="any" id="TotalPrice" value="0" class="form-control input-group-sm totalprice" />
+                <input type="number" readonly step="any" id="TotalPrice" value="0" style="display:none" class="form-control input-group-sm totalprice" />
+            </div>
+
+            <div class="col-md-2">
+                <input type="number" readonly step="any" id="New_Price_After_Discount" value="0" class="form-control input-group-sm new_price_after_discount" />
             </div>
         </div>
+    
         <div class="clearfix"></div>
         <div class="appenditems"></div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 text-right"><strong>Grand Total: </strong><span class="badge badge-info gtotal">0</span> </div>
         <div class="row mt-5">
             <div class="offset-10 col-md-2">
                 <a href="#" id="additem" class="btn btn-success btn-sm"> Add More Item</a>
@@ -63,9 +77,10 @@ else if (ViewBag.EMessage != null)
         </div>
     </form>
 </div>
+@* Copied From Here*@
 <div class="anotheritemdiv" style="display:none;">
     <div class="row parentdiv mt-2">
-        <div class="col-md-6">
+        <div class="col-md-3">
             @Html.DropDownList("DrugId", AllItems, "Choose an Item", new { @class = "form-control input-sm" })
         </div>
         <div class="col-md-2">
@@ -75,50 +90,78 @@ else if (ViewBag.EMessage != null)
             <input type="number" step="any" id="Price" value="1" class="form-control input-group-sm price" />
         </div>
         <div class="col-md-2">
-            <input type="number" readonly step="any" id="TotalPrice" value="1" class="form-control input-group-sm totalprice" />
+            <input type="number" readonly step="any" id="TotalPrice" value="0" class="form-control input-group-sm totalprice" />
         </div>
     </div>
+    
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@section Scripts{
     <script>
-        $(document).on('change', ".qty,.price", function () {
+        $(document).on('change', ".qty,.price,#Discount", function () {
             /*    $(".qty, .price,.totalprice").change(function () {*/
             var closestdiv = $(this).closest(".parentdiv");
             var qty = parseFloat(closestdiv.find("#Qty").val());
             var price = parseFloat(closestdiv.find("#Price").val());
-
             var total = qty * price;
+
+            var new_price = total;
             closestdiv.find("#TotalPrice").val(total);
+            var discount = parseFloat(closestdiv.find("#Discount").val());
+            if (discount != null)
+            {
+                new_price = total - (total * discount / 100);
+            }
+            closestdiv.find("#New_Price_After_Discount").val(new_price);
+            var GrandTotal = 0;
+            $('.parentdiv').each(function () {
+                var closestdiv = $(this);
+                if (closestdiv.find("#DrugId option:selected").val() != "" && closestdiv.find("#DrugId option:selected").val() != undefined && closestdiv.find("#DrugId option:selected").val() != null) {
+                    {
+
+                        var DrugPriceTotal = parseFloat(closestdiv.find("#TotalPrice").val());
+                        GrandTotal += DrugPriceTotal;
+
+                    }
+                    
+                }
+
+            });
+            $(".gtotal").text(GrandTotal);
+
         });
         $("#additem").click(function () {
             var html = $(".anotheritemdiv").html();
             $(".appenditems").append(html);
         });
         $(document).on('click', "#salesubmit", function () {
-            var drugsarray = new Array();
+            var itemsarray = new Array();
             $('.parentdiv').each(function () {
                 var closestdiv = $(this);
                 if (closestdiv.find("#DrugId option:selected").val() != "" && closestdiv.find("#DrugId option:selected").val() != undefined && closestdiv.find("#DrugId option:selected").val() != null) {
                     var obj = {
+
                         "DrugId": closestdiv.find("#DrugId option:selected").val(),
-                        "DrugQuantity": closestdiv.find("#DrugQuantity").val(),
-                        "DrugPriceTotal": closestdiv.find("#DrugPriceTotal").val(),
+                        "DrugQuantity": closestdiv.find("#Qty").val(),
+                        "UnitPrice": closestdiv.find("#Price").val(),
+                        "DrugPriceTotal": closestdiv.find("#TotalPrice").val(),
+                        
+                        
                     }
                     console.log(obj);
-                    drugsarray.push(obj);
+                    itemsarray.push(obj);
                 }
 
             });
 
             var objSale = {
                 "SaleDate": $("#saledate").val(),
+                "TotalAmount": $("#TotalPrice").val(),
+                "Discount": $("#Discount").val(),
+                "NewPrice": $("#New_Price_After_Discount").val(),
             }
             var objMain = {
                 "objSale": objSale,
-                "List_On_Sale": drugsarray,
+                "ListSaleLine": itemsarray,
             }
             var jsonString = JSON.stringify(objMain);
             $("#objData").val(jsonString);
@@ -128,52 +171,3 @@ else if (ViewBag.EMessage != null)
 
     </script>
 }
-
-
-@*Default Code is Commented
-    <h1>Add_Sale</h1>
-
-    <h4>SaleInvoice</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Add_Sale">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="EmpId" class="control-label"></label>
-                    <select asp-for="EmpId" class ="form-control" asp-items="ViewBag.EmpId"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CustomerId" class="control-label"></label>
-                    <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Date" class="control-label"></label>
-                    <input asp-for="Date" class="form-control" />
-                    <span asp-validation-for="Date" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TotalAmount" class="control-label"></label>
-                    <input asp-for="TotalAmount" class="form-control" />
-                    <span asp-validation-for="TotalAmount" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Discount" class="control-label"></label>
-                    <input asp-for="Discount" class="form-control" />
-                    <span asp-validation-for="Discount" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="NewPrice" class="control-label"></label>
-                    <input asp-for="NewPrice" class="form-control" />
-                    <span asp-validation-for="NewPrice" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@

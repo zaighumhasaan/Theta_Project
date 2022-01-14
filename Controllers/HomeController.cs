@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pharmacy_POS.Models;
 using System.Diagnostics;
 
@@ -16,6 +17,29 @@ namespace Pharmacy_POS.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+        public IActionResult Cards()
+        {
+            //Drug drug = _dbcontext.Drugs.Find(15);
+
+            //IList<ViewDrugs> OlistDrugs = (from drug in _dbcontext.Drugs.Where(d=>d.Quantity>0)
+            //                               //from cat in _dbcontext.DrugCategories.Where(m => m.drug.Quantity >= 10)
+            //                               select new ViewDrugs
+            //                               {
+            //                                   DrugId =drug.DrugId,
+            //                                   Quantity = drug.Quantity,
+            //                                   DrugName = drug.DrugName,
+
+            //                                   ScientificName = !string.IsNullOrWhiteSpace(drug.ScientificName) ? drug.ScientificName : "",
+
+
+            //                               }).ToList();
+
+            ////ViewBag.no_of_min_drugs = OlistDrugs.Count();
+            //String json = JsonConvert.SerializeObject(drug);
+
+
             return View();
         }
 

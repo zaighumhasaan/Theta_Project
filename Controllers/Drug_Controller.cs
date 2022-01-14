@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Pharmacy_POS.Models;
-using System.Collections;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace Pharmacy_POS.Controllers
 {
@@ -42,27 +41,11 @@ namespace Pharmacy_POS.Controllers
 
             return RedirectToAction(nameof(Drug_Controller.All_Drugs));
         }
+        
 
-        //[HttpGet]
-        //public IActionResult Min_Stock()
-        //{
 
-        //    return View();
-        //    //IList<ViewDrugs> OlistDrugs = (from drug in _dbcontext.Drugs
-        //    //                          from cat in _dbcontext.DrugCategories.Where(m => m.CategoryId == drug.DrugCategory && drug.Quantity>=10)
-        //    //                          select new ViewDrugs
-        //    //                               {
-        //    //                                   Quantity = drug.Quantity,
-        //    //                                   DrugName =drug.DrugName,
-        //    //                                   CategoryName = cat.CategoryName,
-        //    //                                   //DrugName = drug.DrugName,
-        //    //                                   //ScientificName = !string.IsNullOrWhiteSpace(drug.ScientificName) ? drug.ScientificName : "",
-        //    //                                   //CategoryName = cat.CategoryName,
 
-        //    //                               }).ToList();
-        //    //var json = Json.Convert.SerializeObject(OlistDrugs);
-        //    //return Json(json); ;
-        //}
+
         [HttpGet]
         public IActionResult All_Drugs()
         {
@@ -76,7 +59,7 @@ namespace Pharmacy_POS.Controllers
                                                    DrugName = drug.DrugName,
                                                    ScientificName = !string.IsNullOrWhiteSpace(drug.ScientificName) ? drug.ScientificName : "",
                                                    CategoryName =cat.CategoryName,
-
+                                                   DrugId =drug.DrugId,
                                                }).ToList();
                
 
@@ -130,31 +113,42 @@ namespace Pharmacy_POS.Controllers
             return RedirectToAction(nameof(Drug_Controller.All_Drugs));
         }
         [HttpGet]
-        public IActionResult Delete_Drug(int id)
+        public JsonResult Delete_Drug(int id)
         {
-
-            try
-            {
-                Drug drug = _dbcontext.Drugs.Find(id);
-                if (drug != null)
-                {
-                    _dbcontext.Drugs.Remove(drug);
-                    _dbcontext.SaveChanges();
-                    
-                }
-                else if (drug == null)
-                {
-                    return View();
-                }
+            
 
 
 
-            }
-            catch (AmbiguousMatchException)
-            {
-            }
-            return RedirectToAction(nameof(Drug_Controller.All_Drugs));
+
+            return Json("");
         }
+        //This Action is Working But Commented For Using Ajax Action
+        //[HttpGet]
+        //public IActionResult Delete_Drug(int id)
+        //{
+
+        //    try
+        //    {
+        //        Drug drug = _dbcontext.Drugs.Find(id);
+        //        if (drug != null)
+        //        {
+        //            _dbcontext.Drugs.Remove(drug);
+        //            _dbcontext.SaveChanges();
+                    
+        //        }
+        //        else if (drug == null)
+        //        {
+        //            return View();
+        //        }
+
+
+
+        //    }
+        //    catch (AmbiguousMatchException)
+        //    {
+        //    }
+        //    return RedirectToAction(nameof(Drug_Controller.All_Drugs));
+        //}
 
         [HttpGet]
         public IActionResult Drug_Detail(int id)
@@ -187,6 +181,18 @@ namespace Pharmacy_POS.Controllers
             }
 
             return View();
+        }
+        [HttpPost]
+        public JsonResult Get_Min_Stock()
+        {
+            var TenDays = DateTime.Now.AddDays(10);//This value will be used to get coming value of days for expired/going to expire  conditions
+            var MinStock = _dbcontext.Drugs.Where(m => m.Quantity <= 10).Count();
+            var ExpDrug = _dbcontext.Drugs.Where(m => m.ExpiryDate <= DateTime.Now).Count();
+            var json = new
+            {
+                MinStock,
+            };
+            return Json(json);
         }
         public IActionResult Index()
         {

@@ -197,12 +197,9 @@ namespace Pharmacy_POS.Models
 
             modelBuilder.Entity<OnSaleInvoice>(entity =>
             {
-                entity.HasKey(e => e.SaleInvoiceId)
-                    .HasName("PK_On_Sale_Invoice_1");
-
                 entity.ToTable("On_Sale_Invoice");
 
-                entity.Property(e => e.SaleInvoiceId).HasColumnName("Sale_Invoice_ID");
+                entity.Property(e => e.OnSaleInvoiceId).HasColumnName("On_Sale_Invoice_Id");
 
                 entity.Property(e => e.DrugId).HasColumnName("Drug_ID");
 
@@ -210,10 +207,17 @@ namespace Pharmacy_POS.Models
 
                 entity.Property(e => e.DrugQuantity).HasColumnName("Drug_Quantity");
 
+                entity.Property(e => e.SaleInvoiceId).HasColumnName("Sale_Invoice_ID");
+
                 entity.HasOne(d => d.Drug)
                     .WithMany(p => p.OnSaleInvoices)
                     .HasForeignKey(d => d.DrugId)
                     .HasConstraintName("FK_On_Sale_Invoice_Drug");
+
+                entity.HasOne(d => d.SaleInvoice)
+                    .WithMany(p => p.OnSaleInvoices)
+                    .HasForeignKey(d => d.SaleInvoiceId)
+                    .HasConstraintName("FK_On_Sale_Invoice_Sale_Invoice");
             });
 
             modelBuilder.Entity<PurchaseInvoice>(entity =>
@@ -239,13 +243,11 @@ namespace Pharmacy_POS.Models
                 entity.HasOne(d => d.Emp)
                     .WithMany(p => p.PurchaseInvoices)
                     .HasForeignKey(d => d.EmpId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchase_Invoice_Employee");
 
                 entity.HasOne(d => d.Supplier)
                     .WithMany(p => p.PurchaseInvoices)
                     .HasForeignKey(d => d.SupplierId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchase_Invoice_Supplier");
             });
 
@@ -268,13 +270,11 @@ namespace Pharmacy_POS.Models
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.SaleInvoices)
                     .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sale_Invoice_Customer");
 
                 entity.HasOne(d => d.Emp)
                     .WithMany(p => p.SaleInvoices)
                     .HasForeignKey(d => d.EmpId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sale_Invoice_Employee1");
             });
 

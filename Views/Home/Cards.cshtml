@@ -1,0 +1,120 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container mr-3">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-header bg-primary text-white">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <i class="fa fa-tablets fa-capsules  fa-4x"></i>
+                        </div>
+                        <div class="col">
+                            <h2 class="display-3">08</h2>
+                            <h4>Manage Drugs</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h5>
+                        <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+        @*Card Ends Here*@
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-header bg-info text-white">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <i class="fa fa-boxes fa-4x"></i>
+                        </div>
+                        <div class="col">
+                            <h2 class="display-3">08</h2>
+                            <h4>Near To Empty</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h5>
+                        <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+        @*Card Ends Here*@
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-header bg-green text-white">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <i class="fa fa-capsules fa-4x"></i>
+                        </div>
+                        <div class="col">
+                            <h2 class="display-3">80</h2>
+                            <h4>Expired Drugs</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h5>
+                        <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+        @*Card Ends Here*@
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-header bg-danger text-white">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <i class="fa fa-capsules fa-4x"></i>
+                        </div>
+                        <div class="col">
+                            <h2 class="display-3">80</h2>
+                            <h4>Expired Drugs</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h5>
+                        <a href="#" class="text-primary">View Details<i class="fa fa-arrow-circle-right"></i></a>
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Drug_/Get_Min_Stock",
+                method: "POST",
+                success: function (response) {
+                    console.log(response.MinStock);
+
+                    /*response = JSON.parse(response);*/
+                    $("#drugstock").text(response.MinStock);
+                },
+                error: function (response) {
+
+                }
+            });
+        })</script>
+}

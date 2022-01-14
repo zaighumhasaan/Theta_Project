@@ -30,29 +30,37 @@ namespace Pharmacy_POS.Controllers
             try
             {
                 ViewSales objMain = JsonConvert.DeserializeObject<ViewSales>(objData, new IsoDateTimeConverter());
-                var exSale = _dbcontext.SaleInvoices.OrderByDescending(m => m.SaleInvoiceId).FirstOrDefault();
-                //var serial = 0;
-                //if (exSale != null)
-                //{
-                //    serial = exSale.SaleInvoiceId + 1;
-                //}
-                //objMain.objSale.Serial = serial;
-                //objMain.objSale.Code = "Sale/" + objMain.objSale.SaleDate.Month.ToString() + "/" + objMain.objSale.SaleDate.Year.ToString() + "/" + serial.ToString("000");
-
-                //objMain.objSale.CreatedBy = "System";
-                //objMain.objSale.CreatedDate = DateTime.Now;
-                _dbcontext.SaleInvoices.Add(objMain.objSale);
+                
+                
+                objMain.objSale.Date = DateTime.Now;
+                _dbcontext.SaleInvoices.Add(objMain.objSale);//Adding Sale Invoice 
                 _dbcontext.SaveChanges();
-                foreach (OnSaleInvoice item in objMain.ListSaleLine)
+                
+                foreach (OnSaleInvoice drug in objMain.ListSaleLine)
                 {
+                   Drug objdrug = _dbcontext.Drugs.Find(drug.DrugId);
+                    objdrug.Quantity = objdrug.Quantity - drug.DrugQuantity;
+
+                    if(objdrug.Quantity < 1)
+                    {
+                        _dbcontext.Drugs.Remove(objdrug);
+                        _dbcontext.SaveChanges();
+                    }
+                    
                     var saleid = objMain.objSale.SaleInvoiceId;
-                    item.SaleInvoiceId = saleid;
-                    //item.CreatedBy = "System";
-                    //item.CreatedDate = DateTime.Now;
-                    _dbcontext.OnSaleInvoices.Add(item);
+
+
+                    drug.DrugPriceTotal = objMain.objSale.NewPrice;
+                    
+                    drug.SaleInvoiceId = saleid;
+                    
+                    _dbcontext.OnSaleInvoices.Add(drug);
                     _dbcontext.SaveChanges();
+                    
                 }
-                TempData["SMessage"] = "Data Updated Successfully";
+
+
+                TempData["SMessage"] = "Sale Added Successfully";
             }
             catch (Exception ex)
             {
@@ -102,14 +110,14 @@ namespace Pharmacy_POS.Controllers
         }
 
         [HttpGet]
-        public IActionResult All_Drug()
+        public IActionResult All_Sale_Invoices()
         {
             try
             {
 
                 ViewBag.DSMESSAGE = TempData["DSMESSAGE"];
-                IList<Drug> Drug_List = _dbcontext.Drugs.ToList();
-                return View(Drug_List);
+                IList<SaleInvoice> Sale_Invoice_List = _dbcontext.SaleInvoices.ToList();
+                return View(Sale_Invoice_List);
             }
             catch (AmbiguousMatchException)
             {

@@ -38,6 +38,7 @@ else if(ViewBag.EMESSAGE!=null)
             </div>
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+            
             </div>
             <div class="col-md-4">
                 <input type="text" asp-for="ScientificName" step="any" placeholder="enter scientific name" class="form-control input-group-sm " />
