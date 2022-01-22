@@ -1,9 +1,70 @@
-﻿@model Pharmacy_POS.Models.SaleInvoice
+﻿@model Pharmacy_POS.Models.OnPurchaseInvoice
 
+@{
+    ViewData["Title"] = "Add_Purchase_Invoice";
+}
+
+<h1>Add_Purchase_Invoice</h1>
+
+<h4>OnPurchaseInvoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add_Purchase_Invoice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DrugId" class="control-label"></label>
+                <select asp-for="DrugId" class="form-control" asp-items="ViewBag.DrugId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrugQuantity" class="control-label"></label>
+                <input asp-for="DrugQuantity" class="form-control" />
+                <span asp-validation-for="DrugQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrugPriceTotal" class="control-label"></label>
+                <input asp-for="DrugPriceTotal" class="form-control" />
+                <span asp-validation-for="DrugPriceTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchNo" class="control-label"></label>
+                <input asp-for="BatchNo" class="form-control" />
+                <span asp-validation-for="BatchNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManufactureDate" class="control-label"></label>
+                <input asp-for="ManufactureDate" class="form-control" />
+                <span asp-validation-for="ManufactureDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input asp-for="ExpiryDate" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfEntry" class="control-label"></label>
+                <input asp-for="DateOfEntry" class="form-control" />
+                <span asp-validation-for="DateOfEntry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+
+}
+
+@*Main Coding Starts From Here*@
 
 @{
     ViewData["Title"] = "Add_Sale";
-    
+
 
     IList<Drug> ListItems = ViewBag.ListItems;
     SelectList AllItems = new SelectList(ListItems, "DrugId", "DrugName");
@@ -20,7 +81,7 @@ else if (ViewBag.EMessage != null)
 }
 <h2>Sale Date</h2>
 <div class="col-md-6 col-lg-12 col-sm-3">
-    <form asp-action="Add_Purchase_Invoice" id="saleform">
+    <form asp-action="Add_Sale" id="saleform">
         <input type="hidden" id="objData" name="objData" value="" />
 
         <label>Sale Date</label>
@@ -58,7 +119,7 @@ else if (ViewBag.EMessage != null)
                 <input type="number" readonly step="any" id="New_Price_After_Discount" value="0" class="form-control input-group-sm new_price_after_discount" />
             </div>
         </div>
-    
+
         <div class="clearfix"></div>
         <div class="appenditems"></div>
         <div class="clearfix"></div>
@@ -92,7 +153,7 @@ else if (ViewBag.EMessage != null)
             <input type="number" readonly step="any" id="TotalPrice" value="0" class="form-control input-group-sm totalprice" />
         </div>
     </div>
-    
+
 </div>
 @section Scripts{
     <script>
@@ -121,7 +182,7 @@ else if (ViewBag.EMessage != null)
                         GrandTotal += DrugPriceTotal;
 
                     }
-                    
+
                 }
 
             });
@@ -143,8 +204,8 @@ else if (ViewBag.EMessage != null)
                         "DrugQuantity": closestdiv.find("#Qty").val(),
                         "UnitPrice": closestdiv.find("#Price").val(),
                         "DrugPriceTotal": closestdiv.find("#TotalPrice").val(),
-                        
-                        
+
+
                     }
                     console.log(obj);
                     itemsarray.push(obj);

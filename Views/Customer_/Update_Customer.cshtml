@@ -1,0 +1,76 @@
+﻿@model Pharmacy_POS.Models.Customer
+
+@{
+    ViewData["Title"] = "Update_Customer";
+}
+
+<h1>Update_Customer</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update_Customer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CustomerId" id="customerid" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" id="firstname" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" id="lastname" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNumber" class="control-label"></label>
+                <input asp-for="MobileNumber" class="form-control" id="mobilenumber" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PharmacyName" class="control-label"></label>
+                <input asp-for="PharmacyName" class="form-control " id="pharmacyname" />
+                <span asp-validation-for="PharmacyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control " id="age" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary btnupdate" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        //Update Method Call Here
+        $(document).on("click", ".btnupdate", function () {
+            alert(1);
+            var customer = new Object();
+            customer.CustomerId = $("#customerid").val();
+            customer.FirstName = $("#firstname").val();
+            customer.LastName = $("#lastname").val();
+            customer.MobileNumber = $("#mobilenumber").val();
+            customer.Age = $("#age").val();
+            console.log(customer);
+
+            $.ajax({
+                type: "POST",
+                url: "/Customer_/Update_Customer",
+                data: { cust: JSON.stringify(customer) },
+                success: function (result) {
+                    // $("#myModal").modal("hide");
+                    closestdiv.remove();
+                }
+            });
+        });
+    </script>
+}

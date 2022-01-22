@@ -2,6 +2,7 @@
 using Pharmacy_POS.Models;
 using System.Reflection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Pharmacy_POS.Controllers
 {
@@ -18,20 +19,32 @@ namespace Pharmacy_POS.Controllers
         [HttpGet]
         public IActionResult Add_Drug()
         {
-            
-           ViewBag.ListCategories = _dbcontext.DrugCategories.ToList();
+            try
+            {
+                ViewBag.ListCategories = _dbcontext.DrugCategories.ToList();
+               
+            }
+            catch (Exception ex)
+            {
+
+            }
+           
             return View();
         }
         [HttpPost]
-        public IActionResult Add_Drug(Drug drug)
+        public IActionResult Add_Drug(string drg)
         {
             try
             {
-                
-                drug.Quantity = drug.NoOfPackages * drug.NoOfUnitsInPackage;
-                _dbcontext.Drugs.Add(drug);
-                _dbcontext.SaveChanges();
-                ViewBag.SMESSAGE = "Drug Added Successfully";
+                Drug drug = JsonConvert.DeserializeObject<Drug>(drg, new IsoDateTimeConverter());
+                if(drug!=null)
+                {
+                    drug.Quantity = drug.NoOfPackages * drug.NoOfUnitsInPackage;
+                    _dbcontext.Drugs.Add(drug);
+                    _dbcontext.SaveChanges();
+                    ViewBag.SMESSAGE = "Drug Added Successfully";
+                }
+
             }
             catch (AmbiguousMatchException)
             {
@@ -112,16 +125,7 @@ namespace Pharmacy_POS.Controllers
             }
             return RedirectToAction(nameof(Drug_Controller.All_Drugs));
         }
-        [HttpGet]
-        public JsonResult Delete_Drug(int id)
-        {
-            
-
-
-
-
-            return Json("");
-        }
+       
         //This Action is Working But Commented For Using Ajax Action
         //[HttpGet]
         //public IActionResult Delete_Drug(int id)
@@ -134,7 +138,7 @@ namespace Pharmacy_POS.Controllers
         //        {
         //            _dbcontext.Drugs.Remove(drug);
         //            _dbcontext.SaveChanges();
-                    
+
         //        }
         //        else if (drug == null)
         //        {
@@ -182,17 +186,26 @@ namespace Pharmacy_POS.Controllers
 
             return View();
         }
-        [HttpPost]
+        [HttpGet]
         public JsonResult Get_Min_Stock()
         {
             var TenDays = DateTime.Now.AddDays(10);//This value will be used to get coming value of days for expired/going to expire  conditions
             var MinStock = _dbcontext.Drugs.Where(m => m.Quantity <= 10).Count();
-            var ExpDrug = _dbcontext.Drugs.Where(m => m.ExpiryDate <= DateTime.Now).Count();
+            var ExpDrug = _dbcontext.Drugs.Where(m => m.ExpiryDate <= DateTime.Today.AddDays(10)).Count();
             var json = new
             {
                 MinStock,
             };
+
             return Json(json);
+        }
+
+        public JsonResult Delete_Drug(int Id)
+        {
+            var drug = _dbcontext.Customers.Where(x => x.CustomerId == Id).FirstOrDefault();
+            _dbcontext.Customers.Remove(drug);
+            _dbcontext.SaveChanges();
+            return Json(true);
         }
         public IActionResult Index()
         {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Pharmacy_POS.Models;
 using System.Reflection;
 
@@ -19,22 +21,47 @@ namespace Pharmacy_POS.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add_Purchase_Invoice(PurchaseInvoice pi)
+        public IActionResult Add_Purchase_Invoice(String objData)
         {
+
             try
             {
+                ViewPurchase objMain = JsonConvert.DeserializeObject<ViewPurchase>(objData, new IsoDateTimeConverter());
 
-                _dbcontext.PurchaseInvoices.Add(pi);
+
+                objMain.objPurchase.Date = DateTime.Now;
+                _dbcontext.PurchaseInvoices.Add(objMain.objPurchase);//Adding Sale Invoice 
                 _dbcontext.SaveChanges();
-                ViewBag.SMESSAGE = "Data Saved Successfully";
+
+                foreach (OnPurchaseInvoice drug in objMain.ListPurchaseLine)
+                {
+                    Drug objdrug = _dbcontext.Drugs.Find(drug.DrugId);
+
+                    //objdrug.Quantity = objdrug.Quantity - drug.DrugQuantity; -->This statement was only for Sale 
+
+             
+
+                    //var saleid = objMain.objPurchase.PurchaseInvoiceId;
+
+
+                    //drug.DrugPriceTotal = objMain.objPurchase.NewPrice;
+
+                    //drug.SaleInvoiceId = saleid;
+
+                    _dbcontext.OnPurchaseInvoices.Add(drug);
+                    _dbcontext.SaveChanges();
+
+                }
+
+
+                TempData["SMessage"] = "Sale Added Successfully";
             }
-            catch (AmbiguousMatchException)
+            catch (Exception ex)
             {
-                ViewBag.EMESSAGE = "Some Error Occur ! Please Try Again";
-
+                TempData["EMessage"] = "Some error occured. please try again";
             }
 
-            return View(pi);
+            return RedirectToAction(nameof(Sale_Invoice_Controller.Add_Sale));
         }
 
         [HttpGet]

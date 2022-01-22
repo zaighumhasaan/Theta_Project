@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <form asp-action="Add_Customer">
+
+
+        <table class="table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th> Mobile Number</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>        <input type="text" id="firstname" class="form-control" /></td>
+                <td>        <input type="text" id="lastname" class="form-control" /></td>
+                <td>        <input type="number" id="mobilenumber" class="form-control" /></td>
+                <td>        <input type="number" id="age" class="form-control" /></td>
+            </tr>
+
+
+        </table>
+        <div class="form-group">
+            <a href="#" type="submit"  id="submit" class="btn btn-primary btncreate" >Save</a>
+        </div>
+
+    </form>
+    @section Scripts{
+
+
+        <script>
+
+
+            $(document).on("click", "#submit", function () {
+                alert(1);
+                var customer = new Object();
+                customer.FirstName = $("#firstname").val();
+                customer.LastName = $("#lastname").val();
+                customer.MobileNumber = $("#mobilenumber").val();
+                customer.Age = $("#age").val();
+                alert(111111);
+                $.ajax({
+                    type: "POST",
+                    URL: "/Customer_/Add_Customer",
+                    data: { cust: JSON.stringify(customer) },
+                    success: function (result) {
+                        alert(result);
+                    }
+                });
+
+            });
+
+
+
+        </script>
+
+
+
+    }
+}

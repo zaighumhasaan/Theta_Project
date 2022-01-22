@@ -34,14 +34,14 @@ else if(ViewBag.EMESSAGE!=null)
         <div class="row ">
 
             <div class="col-md-4">
-                <input type="text" asp-for="DrugName" step="any" placeholder="enter drug name" class="form-control input-group-sm " />
+                <input type="text" asp-for="DrugName" step="any" placeholder="enter drug name" class="form-control input-group-sm drugname" />
             </div>
             <div class="col-md-4">
-                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm catname" })
             
             </div>
             <div class="col-md-4">
-                <input type="text" asp-for="ScientificName" step="any" placeholder="enter scientific name" class="form-control input-group-sm " />
+                <input type="text" asp-for="ScientificName" step="any" placeholder="enter scientific name" class="form-control input-group-sm scientificname" />
             </div>
 
         </div>
@@ -54,13 +54,13 @@ else if(ViewBag.EMESSAGE!=null)
         <div class="row ">
 
             <div class="col-md-4">
-                <input type="text" asp-for="Manufacturer" step="any" placeholder="enter manufacturer name" class="form-control input-group-sm " />
+                <input type="text" asp-for="Manufacturer" step="any" placeholder="enter manufacturer name" class="form-control input-group-sm manufacturer" />
             </div>
             <div class="col-md-4">
-                <input type="text" asp-for="UnitPrice" step="any" placeholder="enter  unit price" class="form-control input-group-sm " />
+                <input type="text" asp-for="UnitPrice" step="any" placeholder="enter  unit price" class="form-control input-group-sm unitprice" />
             </div>
             <div class="col-md-4">
-                <input type="text" asp-for="NoOfUnitsInPackage" step="any" placeholder="no of units in package  " class="form-control input-group-sm " />
+                <input type="text" asp-for="NoOfUnitsInPackage" step="any" placeholder="no of units in package  " class="form-control input-group-sm numofunits" />
             </div>
 
         </div>
@@ -73,13 +73,13 @@ else if(ViewBag.EMESSAGE!=null)
         <div class="row ">
 
             <div class="col-md-4">
-                <input type="text" asp-for="NoOfPackages" step="any" placeholder="enter no of packages " class="form-control input-group-sm " />
+                <input type="text" asp-for="NoOfPackages" step="any" placeholder="enter no of packages " class="form-control input-group-sm numofpkg" />
             </div>
             <div class="col-md-4">
-                <input type="text"asp-for="BatchNo" step="any" placeholder="enter batch no" class="form-control input-group-sm " />
+                <input type="text"asp-for="BatchNo" step="any" placeholder="enter batch no" class="form-control input-group-sm batchnum" />
             </div>
             <div class="col-md-4">
-                <input type="datetime" asp-for="ManufacturedDate" step="any" placeholder="manufactured date" class="form-control input-group-sm " />
+                <input type="datetime" asp-for="ManufacturedDate" step="any" placeholder="manufactured date" class="form-control input-group-sm mfgdate" />
             </div>
 
         </div>
@@ -92,101 +92,55 @@ else if(ViewBag.EMESSAGE!=null)
         <div class="row ">
 
             <div class="col-md-4">
-                <input type="datetime" asp-for="ExpiryDate" step="any" placeholder="enter expiry date " class="form-control input-group-sm " />
+                <input type="datetime" asp-for="ExpiryDate" step="any" placeholder="enter expiry date " class="form-control input-group-sm expdate" />
             </div>
             <div class="form-group  col-md-8 border-5">
-                <input type="submit" value="Save " class="btn btn-primary" />
+                <a href="#"type="submit" class="btn btn-primary btncreate" >Add</a>
             </div>
         </div>
     </form>
 </div>
 
-@*-------------------------------------------------------------------------------------------*@
-<!--<div class="offset-5 row">
-    
-    <div class=" col-md-4">
-        <form asp-action="Add_Drug">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DrugName" class="control-label"></label>
-                <input asp-for="DrugName" class="form-control" />
-                <span asp-validation-for="DrugName" class="text-danger"></span>
-            </div>
 
-            <div class="form-group">
-                @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })-->
-               @* 
-               <select class="form-control input-sm" name="DrugCategory" asp-for="DrugCategory">
-                       <option>Choose a category</option>
-                        @foreach (var cat in Listcategories)
-                        {
-                            <option value="@cat.CategoryId">@(cat.CategoryName)</option>
-                        }
-                    </select>
-               *@ <!--<label asp-for="DrugCategory" class="control-label"></label>-->
-                @*    <input asp-for="ItemCategory" class="form-control" />
-                <span asp-validation-for="DrugCategory" class="text-danger"></span>
-            *@<!--</div>-->
-
-            @*<div class="form-group">
-                <label asp-for="DrugCategory" class="control-label"></label>
-                <input asp-for="DrugCategory" class="form-control" />
-                <span asp-validation-for="DrugCategory" class="text-danger"></span>
-            </div>*@
-            <!--<div class="form-group">
-                <label asp-for="ScientificName" class="control-label"></label>
-                <input asp-for="ScientificName" class="form-control" />
-                <span asp-validation-for="ScientificName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Manufacturer" class="control-label"></label>
-                <input asp-for="Manufacturer" class="form-control" />
-                <span asp-validation-for="Manufacturer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitPrice" class="control-label"></label>
-                <input asp-for="UnitPrice" class="form-control" />
-                <span asp-validation-for="UnitPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoOfUnitsInPackage" class="control-label"></label>
-                <input asp-for="NoOfUnitsInPackage" class="form-control" />
-                <span asp-validation-for="NoOfUnitsInPackage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoOfPackages" class="control-label"></label>
-                <input asp-for="NoOfPackages" class="form-control" />
-                <span asp-validation-for="NoOfPackages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BatchNo" class="control-label"></label>
-                <input asp-for="BatchNo" class="form-control" />
-                <span asp-validation-for="BatchNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ManufacturedDate" class="control-label"></label>
-                <input asp-for="ManufacturedDate" class="form-control" />
-                <span asp-validation-for="ManufacturedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
-                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>-->
 
 <div>
     <a asp-action="All_Drugs" class="btn btn-success btn-sm">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+
+    $(document).on("click", ".btncreate", function () {
+        alert(1);
+        var drug = new Object();
+        drug.DrugName = $(".drugname").val();
+        drug.DrugCategory = $(".catname").val();
+        drug.ScientificName = $(".scientificname").val();
+        drug.Manufacturer = $(".manufacturer").val();
+        drug.unitprice = $(".unitprice").val();
+        drug.NoOfUnitsInPackage = $(".numofunits").val();
+        drug.NoOfPackages = $(".numofpkg").val();
+        drug.BatchNo = $(".batchnum").val();
+        drug.ManufacturedDate = $(".mfgdate").val();
+        drug.ExpiryDate = $(".expdate").val();
+        //drug.Quantity = $(.mfgdate).val(); will get qty by another way in action
+        alert(111111);
+        $.ajax({
+            type: "POST",
+            URL: "/Customer_/Add_Customer",
+            data: { drg: JSON.stringify(drug) },
+            success: function (result) {
+                alert(result);
+            }
+        });
+
+    });
+
+</script>
+
+
+
 }
 
 

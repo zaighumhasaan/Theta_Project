@@ -19,6 +19,19 @@ namespace Pharmacy_POS.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public JsonResult AddCustomer(Customer cust)
+        {
+            
+           
+                _dbcontext.Customers.Add(cust);
+                _dbcontext.SaveChanges();
+                       
+            
+            return new JsonResult("Inserted");
+         
+        }
+
         public IActionResult Cards()
         {
             //Drug drug = _dbcontext.Drugs.Find(15);

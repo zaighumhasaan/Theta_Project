@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Pharmacy_POS.Models.Customer>
+
+@{
+    ViewData["Title"] = "AllProducts";
+}
+
+<h1>AllProducts</h1>
+@if (ViewBag.SMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.SMessage</div>
+}
+else if (ViewBag.EMessage != null)
+{
+    <div class="alert alert-warning">@ViewBag.EMessage</div>
+}
+<link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+<p>
+    <a asp-action="AddProduct" class="btn btn-info btn-sm">Add New</a>
+</p>
+<table class="table table-responsive text-nowrap" id="tbl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="parentitem">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+              
+                <td>
+                    <input type="number" id="id" value="@item.CustomerId" />
+                    <a asp-action="Update_Customer" asp-route-id="@item.CustomerId" class="btn btn-info btn-sm btnedit">Edit</a> |
+                    <a asp-action="DetailProduct" asp-route-id="@item.CustomerId" class="btn btn-success btn-sm">Detail</a> |
+                    <a href="#" data-toggle="#myModal" class="btn btn-danger btn-sm btndelete">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/FrontEnd/plugins/datatables/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#tbl").DataTable({});
+        });
+    </script>
+
+    <script>
+        //Delete Method Call Here
+        $(document).on("click", ".btndelete", function () {
+
+            var closestdiv = $(this).closest(".parentitem");
+            var Id = closestdiv.find("#id").val();
+            $.ajax({
+                type: "GET",
+                url: "/Customer_/Delete_Customer",
+                data: { Id: Id },
+                success: function (result) {
+                    // $("#myModal").modal("hide");
+                    closestdiv.remove();
+                }
+            });
+        });
+    </script>
+
+}

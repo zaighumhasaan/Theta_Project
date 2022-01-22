@@ -198,50 +198,184 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          
-            <li class="nav-item menu-is-opening">
-            <a href="" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Manage Drugs
-                <i class="right fas fa-angle-left" ></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
 
-                <li class="nav-item bg-light">
-                    <a class="nav-link" asp-controller="Drug_" asp-action="Add_Drug">
-                        <i class="fa fa-home"></i>
-                        <p>Add Drug</p>
-                    </a>
-                </li>
+              <li class="nav-item menu-is-opening">
+                  <a href="" class="nav-link active">
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                          Manage Drugs
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Drug_" asp-action="Add_Drug">
+                              <i class="fa fa-home"></i>
+                              <p>Add Drug</p>
+                          </a>
+                      </li>
 
 
-                <li class="nav-item bg-light">
-                    <a class="nav-link" asp-controller="Drug_" asp-action="All_Drugs">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>All Drugs</p>
-                    </a>
-                </li>
-                <li class="nav-item bg-light">
-                    <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="Add_Sale">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Add Sale</p>
-                    </a>
-                </li>
-                <li class="nav-item bg-light">
-                    <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="All_Sale_Invoices">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>All Sales</p>
-                    </a>
-                </li>
-            </ul>
-           
-        </ul>
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Drug_" asp-action="All_Drugs">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>All Drugs</p>
+                          </a>
+                      </li>
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="Add_Sale">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Add Sale</p>
+                          </a>
+                      </li>
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="All_Sale_Invoices">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>All Sales</p>
+                          </a>
+                      </li>
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Home" asp-action="Add_Customer">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Add Customer</p>
+                          </a>
+                  </ul>
 
+
+                  <!--2ns side a bar menu -->
+              <li class="nav-item menu-is-opening">
+                  <a href="" class="nav-link active">
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                          Manage Employees
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="#" asp-action="#">
+                              <i class="fa fa-home"></i>
+                              <p>Add Employee</p>
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="#" asp-action="#">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>All Employees</p>
+                          </a>
+                      </li>
+                  </ul>
+
+
+
+
+
+
+
+                  <!--Side Bar Ends Here-->
+                  <!--3rd Side Bar starts here-->
+              <li class="nav-item menu-is-opening">
+                  <a href="" class="nav-link active">
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                          Manage Sale
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="Add_Sale">
+                              <i class="fa fa-home"></i>
+                              <p>Add Sale</p>
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="All_Sale_Invoices">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>All Sales</p>
+                          </a>
+                      </li>
+                  </ul>
+
+
+
+
+
+
+                  <!--3rd Side Bar starts here-->
+              <li class="nav-item menu-is-opening">
+                  <a href="" class="nav-link active">
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                          Manage Customer
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Sale_Invoice_" asp-action="Add_Sale">
+                              <i class="fa fa-home"></i>
+                              <p>Add Customer</p>
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="Customer_" asp-action="All_Customer">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>All Customer</p>
+                          </a>
+                      </li>
+                  </ul>
+                  <!--Side Bar Ends Here-->
+
+              <li class="nav-item menu-is-opening">
+                  <a href="" class="nav-link active">
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                          Manage Purchase
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="#" asp-action="#">
+                              <i class="fa fa-home"></i>
+                              <p>Add Purchase</p>
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item bg-light">
+                          <a class="nav-link" asp-controller="#" asp-action="#">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>All Purchase</p>
+                          </a>
+                      </li>
+                  </ul>
+
+
+
+
+
+
+
+                  <!--Side Bar Ends Here-->
+
+
+          </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
