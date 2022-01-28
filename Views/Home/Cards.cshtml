@@ -4,18 +4,18 @@
 @{
 }
 
-<div class="container mr-3">
+<div class="container mr-3 cardss">
     <div class="row">
         <div class="col-md-3">
             <div class="card text-center">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-gradient-green text-white">
                     <div class="row align-items-center">
                         <div class="col">
                             <i class="fa fa-tablets fa-capsules  fa-4x"></i>
                         </div>
                         <div class="col">
-                            <h6 class="display-3">08</h6>
-                            <h4>Manage Drugs</h4>
+                            <h2 id="newstock"></h2>
+                            <h4>Fresh Stock</h4>
                         </div>
 
                     </div>
@@ -37,7 +37,7 @@
                             <i class="fa fa-boxes fa-4x"></i>
                         </div>
                         <div class="col">
-                            <h2 class="display-3" id="minstock"></h2>
+                            <h2 id="minstock"></h2>
                             <h4>Near To Empty</h4>
                         </div>
 
@@ -54,14 +54,14 @@
         @*Card Ends Here*@
         <div class="col-md-3">
             <div class="card text-center">
-                <div class="card-header bg-green text-white">
+                <div class="card-header bg-gradient-danger text-white">
                     <div class="row align-items-center">
                         <div class="col">
                             <i class="fa fa-capsules fa-4x"></i>
                         </div>
                         <div class="col">
-                            <h2 class="display-3">80</h2>
-                            <h4>Expired Drugs</h4>
+                            <h2 id="NearToExp"></h2>
+                            <h4>Near To Expired</h4>
                         </div>
 
                     </div>
@@ -83,7 +83,7 @@
                             <i class="fa fa-capsules fa-4x"></i>
                         </div>
                         <div class="col">
-                            <h2 class="display-3">80</h2>
+                            <h2 id="expdrug">80</h2>
                             <h4>Expired Drugs</h4>
                         </div>
 
@@ -106,8 +106,48 @@
             $.ajax({
                 url: "/Drug_/Get_Min_Stock",
                 method: "GET",
-                success: function (response) {
-                   (#)
+                success: function (Data) {
+                    
+                    $("#minstock").html(Data);
+                },
+                error: function (response) {
+
+                }
+            });
+        });
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Drug_/Get_Expired_Drugs",
+                method: "GET",
+                success: function (Data) {
+                  
+                    $("#expdrug").html(Data);
+                },
+                error: function (response) {
+
+                }
+            });
+        });
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Drug_/Get_Near_To_Expire_Drugs",
+                method: "GET",
+                success: function (Data) {
+
+                    $("#NearToExp").html(Data);
+                },
+                error: function (response) {
+
+                }
+            });
+        });
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Drug_/New_Stock",
+                method: "GET",
+                success: function (Data) {
+
+                    $("#newstock").html(Data);
                 },
                 error: function (response) {
 

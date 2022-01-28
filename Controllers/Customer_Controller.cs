@@ -107,8 +107,8 @@ namespace Pharmacy_POS.Controllers
         [HttpGet]
         public JsonResult Delete_Customer(int Id)
         {
-            var drug = _dbcontext.Customers.Where(x => x.CustomerId == Id).FirstOrDefault();
-            _dbcontext.Customers.Remove(drug);
+            var customer = _dbcontext.Customers.Where(x => x.CustomerId == Id).FirstOrDefault();
+            _dbcontext.Customers.Remove(customer);
             _dbcontext.SaveChanges();
             return Json(true);
         }

@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Add_Drug" class="btn btn-info btn-sm">Add New Drug</a>
 </p>
-<table class="table table-bordered table-hover table-responsive text-nowrap table-active table-avatar " id="MyTable">
+<table class="table table-bordered table-hover table-responsive text-nowrap table-active table-avatar " id="tbl">
     <thead>
         <tr>
             <th>
@@ -23,80 +23,162 @@
             <th>
                 @Html.DisplayNameFor(model => model.ScientificName)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoOfUnitsInPackage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoOfPackages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BatchNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ManufacturedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExpiryDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>*@
+            @* <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoOfUnitsInPackage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoOfPackages)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BatchNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManufacturedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExpiryDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DrugName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScientificName)
-            </td>
-            <td>
-                <a class="btn btn-warning" href="#">
-                    Delete
-                </a>
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfUnitsInPackage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfPackages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BatchNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ManufacturedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpiryDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>*@
-            <td>
-                <a asp-action="Update_Drug" asp-route-id="@item.DrugId" class="btn btn-info btn-sm">Edit</a> |
-                <a asp-action="Drug_Detail" asp-route-id="@item.DrugId" class="btn btn-success btn-sm">Details</a> |
-                <a asp-action="Delete_Drug" asp-route-id="@item.DrugId" class="btn btn-danger btn-sm">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr class="parentitem">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DrugName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScientificName)
+                </td>
+                @* <td>
+                        @Html.DisplayFor(modelItem => item.Manufacturer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoOfUnitsInPackage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoOfPackages)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BatchNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManufacturedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpiryDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>*@
+                <td>
+                    <input type="number" id="id" value="@item.DrugId" />
+                    <a asp-action="Update_Drug" asp-route-id="@item.DrugId" class="btn btn-info btn-sm">Edit</a> |
+                    <a asp-action="Drug_Detail" asp-route-id="@item.DrugId" class="btn btn-success btn-sm">Details</a> |
+                    <a href="#" data-toggle="#myModal" class="btn btn-danger btn-sm btndelete">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts{
+
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+
+    <!------------------------------------------------------------------Additional Starts Here----------------------------->
+    <script>
+        //Load Data in Table when documents is ready
+        $(document).ready(function () {
+            loadData();
+        });
+
+        //Load Data function
+        function loadData() {
+            $.ajax({
+                url: "/Drug_/List",
+                type: "GET",
+                //contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    $.each(result, function (key, item) {
+                        html += '<tr>';
+                        html += '<td>' + item.Name + '</td>';
+                        html += '<td>' + item.CategoryName + '</td>';
+                        html += '<td>' + item.ScientificName + '</td>';
+                        html += '<td>' + item.Manufacturer + '</td>';
+                        html += '<td>' + item.UnitPrice + '</td>';
+                        html += '<td>' + item.ManufacturedDate + '</td>';
+                        html += '<td>' + item.ExpiryDate + '</td>';
+                        html += '<td>' + item.Quantity + '</td>';
+                        html += '<td><a href="#" onclick="return getbyID(' + item.DrugId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.DrugId + ')">Delete</a></td>';
+                        html += '</tr>';
+                    });
+                    $('.tbody').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+    <!------------------------------------------------------------------Additional Ends Here------------------------------->
+    @*<script src="~/FrontEnd/plugins/datatables/jquery.dataTables.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#tbl").DataTable({});
+            });
+        </script>
+
+        <script>
+            //Delete Method Call Here
+            $(document).on("click", ".btndelete", function () {
+
+                var closestdiv = $(this).closest(".parentitem");
+                var Id = closestdiv.find("#id").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/Drug_/Delete_Drug",
+                    data: { Id: Id },
+                    success: function (result) {
+                        // $("#myModal").modal("hide");
+                        closestdiv.remove();
+                    }
+                });
+            });
+        </script>*@
+
+}

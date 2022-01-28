@@ -6,6 +6,37 @@
 
     SelectList AllCategories = new SelectList(Listcategories, "CategoryId", "CategoryName");  
 }
+<head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AdminLTE 3 | Dashboard</title>
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/js/dataTables.bootstrap5.min.css">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bootstrap 4 -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/jqvmap/jqvmap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="~/FrontEnd/dist/css/adminlte.min.css">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/daterangepicker/daterangepicker.css">
+        <!-- summernote -->
+        <link rel="stylesheet" href="~/FrontEnd/plugins/summernote/summernote-bs4.min.css">
+    </head>
+</head>
 @if(ViewBag.SMESSAGE!=null)
 {
 <div class="alert alert-success">@ViewBag.SMESSAGE</div>
@@ -94,8 +125,11 @@ else if(ViewBag.EMESSAGE!=null)
             <div class="col-md-4">
                 <input type="datetime" asp-for="ExpiryDate" step="any" placeholder="enter expiry date " class="form-control input-group-sm expdate" />
             </div>
+
             <div class="form-group  col-md-8 border-5">
-                <a href="#"type="submit" class="btn btn-primary btncreate" >Add</a>
+               <input type="submit" id="submit" value="Create" class="btn btn-primary" />
+                
+
             </div>
         </div>
     </form>
@@ -111,27 +145,30 @@ else if(ViewBag.EMESSAGE!=null)
 
 <script>
 
-    $(document).on("click", ".btncreate", function () {
+
+    $(document).on("click", "#submit", function () {
         alert(1);
-        var drug = new Object();
-        drug.DrugName = $(".drugname").val();
-        drug.DrugCategory = $(".catname").val();
-        drug.ScientificName = $(".scientificname").val();
-        drug.Manufacturer = $(".manufacturer").val();
-        drug.unitprice = $(".unitprice").val();
-        drug.NoOfUnitsInPackage = $(".numofunits").val();
-        drug.NoOfPackages = $(".numofpkg").val();
-        drug.BatchNo = $(".batchnum").val();
-        drug.ManufacturedDate = $(".mfgdate").val();
-        drug.ExpiryDate = $(".expdate").val();
-        //drug.Quantity = $(.mfgdate).val(); will get qty by another way in action
-        alert(111111);
+        var drug = {
+
+            DrugName: $('.drugname').val(),
+        DrugCategory: $('.catname').val(),
+        ScientificName: $('.scientificname').val(),
+        Manufacturer: $('.manufacturer').val(),
+        UnitPrice: $('.unitprice').val(),
+        NoOfUnitsInPackage: $('.numofunits').val(),
+        NoOfPackages: $('.numofpkg').val(),
+        BatchNo: $('.batchnum').val(),
+        ManufacturedDate: $('.mfgdate').val(),
+        ExpiryDate: $('.expdate').val(),
+        };
+        console.log(drug);
         $.ajax({
             type: "POST",
-            URL: "/Customer_/Add_Customer",
+            URL: "/Drug_/Add_Drug",
             data: { drg: JSON.stringify(drug) },
+            
             success: function (result) {
-                alert(result);
+                alert(1212);
             }
         });
 

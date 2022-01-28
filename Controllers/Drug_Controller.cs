@@ -21,7 +21,7 @@ namespace Pharmacy_POS.Controllers
         {
             try
             {
-                ViewBag.ListCategories = _dbcontext.DrugCategories.ToList();
+               ViewBag.ListCategories = _dbcontext.DrugCategories.ToList();
                
             }
             catch (Exception ex)
@@ -32,10 +32,11 @@ namespace Pharmacy_POS.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add_Drug(string drg)
+        public JsonResult Add_Drug(string drg)
         {
             try
             {
+                
                 Drug drug = JsonConvert.DeserializeObject<Drug>(drg, new IsoDateTimeConverter());
                 if(drug!=null)
                 {
@@ -44,7 +45,7 @@ namespace Pharmacy_POS.Controllers
                     _dbcontext.SaveChanges();
                     ViewBag.SMESSAGE = "Drug Added Successfully";
                 }
-
+                return Json(true);
             }
             catch (AmbiguousMatchException)
             {
@@ -52,10 +53,36 @@ namespace Pharmacy_POS.Controllers
 
             }
 
-            return RedirectToAction(nameof(Drug_Controller.All_Drugs));
+            return Json(false);
         }
         
+        [HttpGet]
+        public JsonResult List()
+        {
+            try
+            {
 
+                ViewBag.DSMESSAGE = TempData["DSMESSAGE"];
+                //IList<ViewDrugs> OlistDrugs = (from drug in _dbcontext.Drugs
+                //                               from cat in _dbcontext.DrugCategories.Where(m => m.CategoryId == drug.DrugCategory)
+                //                               select new ViewDrugs
+                //                               {
+                //                                   DrugName = drug.DrugName,
+                //                                   ScientificName = !string.IsNullOrWhiteSpace(drug.ScientificName) ? drug.ScientificName : "",
+                //                                   CategoryName = cat.CategoryName,
+                //                                   DrugId = drug.DrugId,
+                //                               }).ToList();
+                IList<Drug> OlistDrugs = _dbcontext.Drugs.ToList();
+
+                return Json(OlistDrugs);
+            }
+            catch (AmbiguousMatchException)
+            {
+
+            }
+            return Json("");
+            //return Json(_dbcontext.Drugs.ToList());
+        }
 
 
 
@@ -93,19 +120,21 @@ namespace Pharmacy_POS.Controllers
             {
                 ViewBag.ListCategories = _dbcontext.DrugCategories.ToList();
 
-                ViewBag.SMESSAGE = TempData["SMESSAGE"];
-                ViewBag.EMESSAGE = TempData["EMESSAGE"];
+                
+                
                 Drug drug = _dbcontext.Drugs.Find(id);
+                ViewBag.SMESSAGE = TempData["SMESSAGE"];
                 return View(drug);
 
 
             }
             catch (AmbiguousMatchException)
             {
-                return View();
+                ViewBag.EMESSAGE = TempData["EMESSAGE"];
+               
             }
 
-
+            return View();
         }
         [HttpPost]
         public IActionResult Update_Drug(Drug drug)
@@ -159,11 +188,7 @@ namespace Pharmacy_POS.Controllers
         {
             try
             {
-               
-
-                
-
-                Drug drug = _dbcontext.Drugs.Find(id);
+               Drug drug = _dbcontext.Drugs.Find(id);
                 foreach (var name in _dbcontext.DrugCategories )
                 {
                     if (drug.DrugCategory ==name.CategoryId)
@@ -189,24 +214,111 @@ namespace Pharmacy_POS.Controllers
         [HttpGet]
         public JsonResult Get_Min_Stock()
         {
-            var TenDays = DateTime.Now.AddDays(10);//This value will be used to get coming value of days for expired/going to expire  conditions
-            var MinStock = _dbcontext.Drugs.Where(m => m.Quantity <= 10).Count();
-            var ExpDrug = _dbcontext.Drugs.Where(m => m.ExpiryDate <= DateTime.Today.AddDays(10)).Count();
-            var json = new
+            try
             {
-                MinStock,
-            };
+               // var TenDays = DateTime.Now.AddDays(10);//This value will be used to get coming value of days for expired/going to expire  conditions
+                var MinStock = _dbcontext.Drugs.Where(m => m.Quantity <= 10).Count();
+                //var ExpDrug = _dbcontext.Drugs.Where(m => m.ExpiryDate <= DateTime.Today.AddDays(10)).Count();
+                if(MinStock==null)
+                {
+                    MinStock = 0;
+                }
+                //var json = new
+                //{
+                //    ExpDrug,
+                //    MinStock,
+                //};
 
-            return Json(json);
+                return Json(MinStock);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return Json(0);
         }
-
-        public JsonResult Delete_Drug(int Id)
+        [HttpGet]
+        public JsonResult Get_Expired_Drugs()
         {
-            var drug = _dbcontext.Customers.Where(x => x.CustomerId == Id).FirstOrDefault();
-            _dbcontext.Customers.Remove(drug);
-            _dbcontext.SaveChanges();
-            return Json(true);
+            try
+            {
+                var ExpDrug = _dbcontext.Drugs.Where(x => x.ExpiryDate <= DateTime.Today).Count();
+                if(ExpDrug==null)
+                {
+                    ExpDrug = 0;
+                }
+                return Json(ExpDrug);
+            }
+            catch(Exception ex)
+            {
+
+            }
+         
+
+            return Json(0);
         }
+        [HttpGet]
+        public JsonResult Get_Near_To_Expire_Drugs()
+        {
+            try
+            {
+                var NearExpDrug = _dbcontext.Drugs.Where(x => x.ExpiryDate <= DateTime.Today.AddDays(20)).Count();
+                if (NearExpDrug == null)
+                {
+                    NearExpDrug = 0;
+                }
+                return Json(NearExpDrug);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return Json(0);
+        }
+        [HttpGet]
+        public JsonResult New_Stock()
+        {
+            try
+            {
+                var newstock = _dbcontext.Drugs.Where(x => x.ManufacturedDate <= DateTime.Today.AddDays(20)).Count();
+                if (newstock == null)
+                {
+                    newstock = 0;
+                }
+                return Json(newstock);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return Json(0);
+        }
+        [HttpGet]
+        public JsonResult Delete_Drug(int Id)//Deleting Using Jquery Ajax
+        {
+            try
+            {
+                var drug = _dbcontext.Drugs.Where(x => x.DrugId == Id).FirstOrDefault();
+                if (drug != null)
+                {
+                    _dbcontext.Drugs.Remove(drug);
+                    _dbcontext.SaveChanges();
+                    return Json(true);
+                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return Json(false);
+
+        }
+
         public IActionResult Index()
         {
             return View();

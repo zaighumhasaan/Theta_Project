@@ -12,65 +12,65 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 col-lg-12 col-sm-3">
         <form asp-action="Update_Drug">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DrugId" />
-            <div class="form-group">
-                <label asp-for="DrugName" class="control-label"></label>
-                <input asp-for="DrugName" class="form-control" />
-                <span asp-validation-for="DrugName" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-4"><label>Drug Name</label></div>
+                <div class="col-md-4"><label>Category</label></div>
+                <div class="col-md-4"><label>Scientific Name</label></div>
             </div>
-            <div class="form-group">
-                 @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
-                @*<label asp-for="DrugCategory" class="control-label"></label>
+            <div class="row">
+
+                <div class="form-group col-md-4"> <input asp-for="DrugName" class="form-control" /> </div>
+                <div class="form-group col-md-4">
+                    @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm" })
+                    @*<label asp-for="DrugCategory" class="control-label"></label>
                 <input asp-for="DrugCategory" class="form-control" />*@
-                <span asp-validation-for="DrugCategory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScientificName" class="control-label"></label>
-                <input asp-for="ScientificName" class="form-control" />
-                <span asp-validation-for="ScientificName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Manufacturer" class="control-label"></label>
-                <input asp-for="Manufacturer" class="form-control" />
-                <span asp-validation-for="Manufacturer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitPrice" class="control-label"></label>
-                <input asp-for="UnitPrice" class="form-control" />
-                <span asp-validation-for="UnitPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoOfUnitsInPackage" class="control-label"></label>
-                <input asp-for="NoOfUnitsInPackage" class="form-control" />
-                <span asp-validation-for="NoOfUnitsInPackage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NoOfPackages" class="control-label"></label>
-                <input asp-for="NoOfPackages" class="form-control" />
-                <span asp-validation-for="NoOfPackages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BatchNo" class="control-label"></label>
-                <input asp-for="BatchNo" class="form-control" />
-                <span asp-validation-for="BatchNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ManufacturedDate" class="control-label"></label>
-                <input asp-for="ManufacturedDate" class="form-control" />
-                <span asp-validation-for="ManufacturedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
-                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                    @*<span asp-validation-for="DrugCategory" class="text-danger"></span>*@
+                </div>
+                <div class="form-group col-md-4">
+
+                    <input asp-for="ScientificName" class="form-control" />
+                    @*<span asp-validation-for="ScientificName" class="text-danger"></span>*@
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="row">
+                <div class="col-md-4"><label>Manufacturer</label></div>
+                <div class="col-md-4"><label>Unit Price</label></div>
+                <div class="col-md-4"><label>No Of Units InPackage</label></div>
             </div>
+            <div class="row">
+
+                <div class="form-group col-md-4"><input asp-for="Manufacturer" class="form-control" /> </div>
+                <div class="form-group col-md-4"><input asp-for="UnitPrice" class="form-control" /></div>
+                <div class="form-group col-md-4"><input asp-for="NoOfUnitsInPackage" class="form-control" /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4"><label>No Of Packages</label></div>
+                <div class="col-md-4"><label>Batch No</label></div>
+                <div class="col-md-4"><label>Manufactured Date</label></div>
+            </div>
+            <div class="row">
+
+                <div class="form-group col-md-4"><input asp-for="NoOfPackages" class="form-control" /> </div>
+                <div class="form-group col-md-4"><input asp-for="BatchNo" class="form-control" /></div>
+                <div class="form-group col-md-4"><input asp-for="ManufacturedDate" class="form-control" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><label>Expiry Date</label></div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4"><input asp-for="ExpiryDate" class="form-control" /></div>
+                <div class="form-group col-md-8">
+                    <input type="submit" value="Save" class="btn btn-primary btn-m" />
+                </div>
+            </div>
+            
         </form>
     </div>
 </div>
