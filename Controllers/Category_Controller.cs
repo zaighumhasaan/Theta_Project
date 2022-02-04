@@ -20,12 +20,12 @@ namespace Pharmacy_POS.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult Add_Drug_Category(DrugCategory category)
+        public JsonResult Add_Drug_Category(string cate)
         {
             
             try
             {
-               // DrugCategory category = JsonConvert.DeserializeObject<DrugCategory>(cate); ;//JsonConvert.DeserializeObject<DrugCategory>(cate, new IsoDateTimeConverter());
+                DrugCategory category = JsonConvert.DeserializeObject<DrugCategory>(cate); ;//JsonConvert.DeserializeObject<DrugCategory>(cate, new IsoDateTimeConverter());
 
                 if (category != null)
                 {

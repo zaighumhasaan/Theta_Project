@@ -79,13 +79,13 @@
                     
 
                     $.each(result, function (key, item) {
-                        //html += '<tr>';
-                        //html += '<td>' + item.CategoryName + '</td>';
-                        //html += '<td>' + item.DangerousLevel + '</td>';
+                        html += '<tr>';
+                        html += '<td>' + item.CategoryName + '</td>';
+                        html += '<td>' + item.DangerousLevel + '</td>';
 
-                        //html += '<td><a href="#" onclick="return getbyID(' + item.CategoryId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.CategoryId + ')">Delete</a></td>';
-                        //html += '</tr>';
-                        $(".tbody").Add(item);
+                        html += '<td><a href="#" onclick="return getbyID(' + item.CategoryId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.CategoryId + ')">Delete</a></td>';
+                        html += '</tr>';
+                        $(".tbody").Add(key);
                     });
                     
 

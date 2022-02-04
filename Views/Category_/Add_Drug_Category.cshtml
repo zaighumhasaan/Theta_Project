@@ -72,7 +72,7 @@ else if (ViewBag.EMESSAGE != null)
                 $.ajax({
                     type: "POST",
                     URL: "/Category_/Add_Drug_Category",
-                    data: { category: JSON.stringify(category) },
+                    data: { cate: JSON.stringify(category) },
                     success: function (result) {
                         alert(result);
                     }

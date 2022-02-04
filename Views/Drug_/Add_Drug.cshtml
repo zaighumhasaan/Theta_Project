@@ -4,10 +4,10 @@
     ViewData["Title"] = "Add_Drug";
     IList<DrugCategory> Listcategories = ViewBag.ListCategories;
 
-    SelectList AllCategories = new SelectList(Listcategories, "CategoryId", "CategoryName");  
+    SelectList AllCategories = new SelectList(Listcategories, "CategoryId", "CategoryName");
 }
 <head>
-    <head>
+    
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>AdminLTE 3 | Dashboard</title>
@@ -35,15 +35,19 @@
         <link rel="stylesheet" href="~/FrontEnd/plugins/daterangepicker/daterangepicker.css">
         <!-- summernote -->
         <link rel="stylesheet" href="~/FrontEnd/plugins/summernote/summernote-bs4.min.css">
-    </head>
+
+        <link rel="stylesheet" href="~/FrontEnd/plugins/bootstrap5_DateTimePicker/css/bootstrap-datetimepicker.css">
+        <link rel="stylesheet" href="~/FrontEnd/plugins/bootstrap5_DateTimePicker/css/bootstrap-datetimepicker.min.css">
+
+
 </head>
-@if(ViewBag.SMESSAGE!=null)
+@if (ViewBag.SMESSAGE != null)
 {
-<div class="alert alert-success">@ViewBag.SMESSAGE</div>
+    <div class="alert alert-success">@ViewBag.SMESSAGE</div>
 }
-else if(ViewBag.EMESSAGE!=null)
+else if (ViewBag.EMESSAGE != null)
 {
-<div class="alert alert-warning">@ViewBag.EMESSAGE</div>
+    <div class="alert alert-warning">@ViewBag.EMESSAGE</div>
 }
 
 <center><h1>Add Drug</h1></center>
@@ -69,7 +73,7 @@ else if(ViewBag.EMESSAGE!=null)
             </div>
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.DrugCategory, AllCategories, "Choose a category", new { @class = "form-control inout-sm catname" })
-            
+
             </div>
             <div class="col-md-4">
                 <input type="text" asp-for="ScientificName" step="any" placeholder="enter scientific name" class="form-control input-group-sm scientificname" />
@@ -107,28 +111,28 @@ else if(ViewBag.EMESSAGE!=null)
                 <input type="text" asp-for="NoOfPackages" step="any" placeholder="enter no of packages " class="form-control input-group-sm numofpkg" />
             </div>
             <div class="col-md-4">
-                <input type="text"asp-for="BatchNo" step="any" placeholder="enter batch no" class="form-control input-group-sm batchnum" />
+                <input type="text" asp-for="BatchNo" step="any" placeholder="enter batch no" class="form-control input-group-sm batchnum" />
             </div>
             <div class="col-md-4">
-                <input type="datetime" asp-for="ManufacturedDate" step="any" placeholder="manufactured date" class="form-control input-group-sm mfgdate" />
+                <input type="datetime" asp-for="ManufacturedDate" placeholder="manufactured date" class="form-control input-group-sm mfgdate" />
             </div>
 
         </div>
         <div class="row mt-4">
             <div class="col-md-4"><label>Expiry Date </label></div>
             <div class="col-md-8"></div>
-            
+
 
         </div>
         <div class="row ">
 
             <div class="col-md-4">
-                <input type="datetime" asp-for="ExpiryDate" step="any" placeholder="enter expiry date " class="form-control input-group-sm expdate" />
+                <input type="datetime" asp-for="ExpiryDate" step="any" placeholder="enter expiry date " class="form-control input-group-sm datetimepicker expdate" />
             </div>
 
             <div class="form-group  col-md-8 border-5">
-               <input type="submit" id="submit" value="Create" class="btn btn-primary" />
-                
+                <input type="submit" id="submit" value="Create" class="btn btn-primary" />
+
 
             </div>
         </div>
@@ -141,40 +145,42 @@ else if(ViewBag.EMESSAGE!=null)
     <a asp-action="All_Drugs" class="btn btn-success btn-sm">Back to List</a>
 </div>
 
+
 @section Scripts {
 
-<script>
+
+    <script>
 
 
-    $(document).on("click", "#submit", function () {
-        alert(1);
-        var drug = {
+        $(document).on("click", "#submit", function () {
+            alert(1);
+            var drug = {
 
-            DrugName: $('.drugname').val(),
-        DrugCategory: $('.catname').val(),
-        ScientificName: $('.scientificname').val(),
-        Manufacturer: $('.manufacturer').val(),
-        UnitPrice: $('.unitprice').val(),
-        NoOfUnitsInPackage: $('.numofunits').val(),
-        NoOfPackages: $('.numofpkg').val(),
-        BatchNo: $('.batchnum').val(),
-        ManufacturedDate: $('.mfgdate').val(),
-        ExpiryDate: $('.expdate').val(),
-        };
-        console.log(drug);
-        $.ajax({
-            type: "POST",
-            URL: "/Drug_/Add_Drug",
-            data: { drg: JSON.stringify(drug) },
-            
-            success: function (result) {
-                alert(1212);
-            }
+                DrugName: $('.drugname').val(),
+                DrugCategory: $('.catname').val(),
+                ScientificName: $('.scientificname').val(),
+                Manufacturer: $('.manufacturer').val(),
+                UnitPrice: $('.unitprice').val(),
+                NoOfUnitsInPackage: $('.numofunits').val(),
+                NoOfPackages: $('.numofpkg').val(),
+                BatchNo: $('.batchnum').val(),
+                ManufacturedDate: $('.mfgdate').val(),
+                ExpiryDate: $('.expdate').val(),
+            };
+            console.log(drug);
+            $.ajax({
+                type: "POST",
+                URL: "/Drug_/Add_Drug",
+                data: { drg: JSON.stringify(drug) },
+
+                success: function (result) {
+                    alert(1212);
+                }
+            });
+
         });
 
-    });
-
-</script>
+    </script>
 
 
 
